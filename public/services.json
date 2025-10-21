@@ -1,0 +1,74 @@
+[
+    {
+        "serviceId": 1,
+        "serviceName": "Winter Coat Fitting for Dogs",
+        "providerName": "PawCare Studio",
+        "providerEmail": "info@pawcare.com",
+        "price": 25,
+        "rating": 4.9,
+        "slotsAvailable": 4,
+        "description": "Custom coat fitting and warm outfit options to keep your dog comfortable in the cold.",
+        "image": "https://i.postimg.cc/example1.png",
+        "category": "Clothing"
+    },
+    {
+        "serviceId": 2,
+        "serviceName": "Winter Grooming & Paw Treatment",
+        "providerName": "CozyPets Grooming",
+        "providerEmail": "hello@cozypets.com",
+        "price": 30,
+        "rating": 4.8,
+        "slotsAvailable": 3,
+        "description": "Professional grooming with moisturizing paw balm and winter-safe shampoo.",
+        "image": "https://i.postimg.cc/example2.png",
+        "category": "Grooming"
+    },
+    {
+        "serviceId": 3,
+        "serviceName": "Heated Bed Delivery & Setup",
+        "providerName": "WarmNest",
+        "providerEmail": "contact@warmnest.com",
+        "price": 40,
+        "rating": 4.7,
+        "slotsAvailable": 5,
+        "description": "Delivery and setup of heated pet beds suitable for small and medium pets.",
+        "image": "https://i.postimg.cc/example3.png",
+        "category": "Comfort"
+    },
+    {
+        "serviceId": 4,
+        "serviceName": "Cold-weather Walk Assistance",
+        "providerName": "SafeWalks",
+        "providerEmail": "support@safewalks.com",
+        "price": 20,
+        "rating": 4.6,
+        "slotsAvailable": 6,
+        "description": "Short, monitored walks with protective paw care for icy pavements.",
+        "image": "https://i.postimg.cc/example4.png",
+        "category": "Outdoor"
+    },
+    {
+        "serviceId": 5,
+        "serviceName": "Winter Nutrition Consult",
+        "providerName": "NutriPaws",
+        "providerEmail": "hello@nutripaws.com",
+        "price": 35,
+        "rating": 4.9,
+        "slotsAvailable": 2,
+        "description": "Diet tips and supplements for maintaining pet health in cold months.",
+        "image": "https://i.postimg.cc/example5.png",
+        "category": "Health"
+    },
+    {
+        "serviceId": 6,
+        "serviceName": "Emergency Cold-weather Vet Visit",
+        "providerName": "CityVets",
+        "providerEmail": "contact@cityvets.com",
+        "price": 60,
+        "rating": 4.5,
+        "slotsAvailable": 1,
+        "description": "On-call vet visit for hypothermia or frostbite concerns.",
+        "image": "https://i.postimg.cc/example6.png",
+        "category": "Medical"
+    }
+]
