@@ -8,7 +8,7 @@
         "rating": 4.9,
         "slotsAvailable": 4,
         "description": "Custom coat fitting and warm outfit options to keep your dog comfortable in the cold.",
-        "image": "https://i.postimg.cc/example1.png",
+        "image": "https://i.ibb.co/s9Zm3N6y/cat-grooming.jpg",
         "category": "Clothing"
     },
     {
@@ -20,7 +20,7 @@
         "rating": 4.8,
         "slotsAvailable": 3,
         "description": "Professional grooming with moisturizing paw balm and winter-safe shampoo.",
-        "image": "https://i.postimg.cc/example2.png",
+        "image": "https://i.ibb.co/s9Zm3N6y/cat-grooming.jpg",
         "category": "Grooming"
     },
     {
@@ -56,7 +56,7 @@
         "rating": 4.9,
         "slotsAvailable": 2,
         "description": "Diet tips and supplements for maintaining pet health in cold months.",
-        "image": "https://i.postimg.cc/example5.png",
+        "image": "https://i.ibb.co/s9Zm3N6y/cat-grooming.jpg",
         "category": "Health"
     },
     {
