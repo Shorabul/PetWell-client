@@ -6,19 +6,26 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 const Singup = () => {
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
-    const { createUser, setUser } = useContext(AuthContext);
+    const { createUser, setUser, updateUser } = useContext(AuthContext);
     const handleSignup = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
+        const photo = e.target.photoURL.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
         console.log(name, email, password);
         createUser(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                alert("Signed up successful");
-                setUser(user);
-                navigate('/')
+                updateUser({ displayName: name, photoURL: photo })
+                    .then(() => {
+                        alert('Signup successful')
+                        setUser(user);
+                        navigate('/')
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
             })
             .catch((error) => {
                 const errorCode = error.code;

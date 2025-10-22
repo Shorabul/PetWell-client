@@ -58,11 +58,11 @@ const Navbar = () => {
                     {/* Profile dropdown */}
                     {user ?
                         <><button onClick={handleProfileToggle} type="button" className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
-                            <img className="w-8 h-8 rounded-full" src="https://i.ibb.co/kgVb18wv/user-icon.jpg" alt="user photo" />
+                            <img className="w-8 h-8 rounded-full" src={user.photoURL} alt="user photo" />
                         </button>
                             <div className={`${profileToggle ? 'block' : 'hidden'} z-50 absolute top-9 -right-3 my-4 text-base list-none bg-lime-700 divide-y divide-white rounded-lg shadow-s`} id="user-dropdown">
                                 <div className="px-4 py-3 flex flex-col">
-                                    <span className="text-sm text-white">Shorabul</span>
+                                    <span className="text-sm text-white">{user.displayName}</span>
                                     <span className="text-sm text-gray-300 truncate">{user.email}</span>
                                 </div>
                                 <ul className="py-2" aria-labelledby="user-menu-button">
