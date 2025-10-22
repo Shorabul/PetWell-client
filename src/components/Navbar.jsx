@@ -9,7 +9,7 @@ import { AuthContext } from '../provider/AuthContext';
 const Navbar = () => {
     const [toggle, setToggle] = useState(false);
     const [profileToggle, setProfileToggle] = useState(false);
-    const { user } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
     // const { email } = user;
     // console.log(email);
 
@@ -58,7 +58,7 @@ const Navbar = () => {
                                 </div>
                                 <ul className="py-2" aria-labelledby="user-menu-button">
                                     <li>
-                                        <a className="px-4 py-2 text-sm text-white">Sign out</a>
+                                        <button onClick={logout} className="px-4 py-2 text-sm text-white">Sign out</button>
                                     </li>
                                 </ul>
                             </div></>
