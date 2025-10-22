@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAuth, } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, } from "firebase/auth";
 import { AuthContext } from './AuthContext';
 import app from '../firebase/firebase.config';
 import { useEffect } from 'react';
@@ -11,6 +11,8 @@ const AuthProvider = ({ children }) => {
     const [services, setServices] = useState([]);
     const [tips, setTips] = useState([]);
     const [doctors, setDoctors] = useState([]);
+    const [user, setUser] = useState(null);
+    // console.log(user);
     useEffect(() => {
         fetch('/services.json')
             .then(res => res.json())
@@ -36,10 +38,26 @@ const AuthProvider = ({ children }) => {
             })
     }, []);
 
+    const createUser = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password);
+    }
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        });
+        return () => {
+            unsubscribe();
+        }
+    }, []);
+
     const authData = {
         services,
         tips,
         doctors,
+        user,
+        setUser,
+        createUser,
     }
     return (
         <AuthContext value={authData}>

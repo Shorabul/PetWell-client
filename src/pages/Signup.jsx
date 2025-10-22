@@ -1,11 +1,64 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router';
+import { AuthContext } from '../provider/AuthContext';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-const Signup = () => {
+const Singup = () => {
+    const navigate = useNavigate();
+    const [show, setShow] = useState(false);
+    const { createUser, setUser } = useContext(AuthContext);
+    const handleSignup = (e) => {
+        e.preventDefault();
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        console.log(name, email, password);
+        createUser(email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                setUser(user);
+                alert("Signed up successful");
+                navigate('/')
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage);
+            })
+    }
     return (
-        <div>
-            Signup
+        <div className="min-h-screen flex items-center justify-center">
+            <div className="bg-lime-700 text-white p-8 rounded shadow-md w-full max-w-md">
+                <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+                <form onSubmit={handleSignup}>
+                    <div>
+                        <label className='font-semibold' htmlFor="name">Name</label>
+                        <input type="name" name='name' placeholder="Name" className="bg-white placeholder:text-gray-500 text-gray-900 w-full mb-4 p-2 border rounded" />
+                    </div>
+                    <div>
+                        <label className='font-semibold' htmlFor="name">Name</label>
+                        <input type="url" name='photoURL' placeholder="PhotoURL" className="bg-white placeholder:text-gray-500 text-gray-900 w-full mb-4 p-2 border rounded" />
+                    </div>
+                    <div>
+                        <label className='font-semibold' htmlFor="email">Email</label>
+                        <input type='email' name='email' placeholder="Email" className="bg-white placeholder:text-gray-500 text-gray-900 w-full mb-4 p-2 border rounded" />
+                    </div>
+                    <div className='relative'>
+                        <label className='font-semibold' htmlFor="password">Password</label>
+                        <input type={show ? 'text' : 'password'} name='password' placeholder="Password" className="bg-white placeholder:text-gray-500 text-gray-900 w-full mb-4 p-2 border rounded" />
+                        <span onClick={() => setShow(!show)} className='text-black absolute top-9.5 right-2'>
+                            {show ? <FaEye /> : <FaEyeSlash />
+                            }
+                        </span>
+                    </div>
+                    <button type='submit' className="bg-green-600 hover:bg-green-700 focus:ring-green-600 text-white w-full py-2 rounded">Sign up</button>
+                </form>
+                <p className="text-sm text-center mt-4">
+                    Have an account? <Link to="/login" className="text-green-400">Log in</Link>
+                </p>
+            </div>
         </div>
     );
 };
 
-export default Signup;
+export default Singup;

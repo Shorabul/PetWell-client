@@ -4,6 +4,8 @@ import MainLayout from '../layouts/MainLayout';
 import Home from '../pages/Home';
 import Services from '../pages/Services';
 import Profile from '../pages/Profile';
+import Login from '../pages/Login';
+import Signup from '../pages/Signup';
 const router = createBrowserRouter([
     {
         path: '/',
@@ -26,8 +28,15 @@ const router = createBrowserRouter([
                 element: <Profile></Profile>
             }
         ]
-    }
-
+    },
+    {
+        path: '/login',
+        element: <Login></Login>,
+    },
+    {
+        path: '/signup',
+        element: <Signup></Signup>,
+    },
 ]);
 
 export default router;
