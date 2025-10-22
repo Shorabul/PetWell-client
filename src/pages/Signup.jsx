@@ -16,8 +16,8 @@ const Singup = () => {
         createUser(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                setUser(user);
                 alert("Signed up successful");
+                setUser(user);
                 navigate('/')
             })
             .catch((error) => {

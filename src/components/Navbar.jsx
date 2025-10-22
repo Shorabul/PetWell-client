@@ -11,7 +11,16 @@ const Navbar = () => {
     const [profileToggle, setProfileToggle] = useState(false);
     const { user, logout } = useContext(AuthContext);
     // const { email } = user;
-    // console.log(email);
+    console.log(user);
+    const handleLogout = () => {
+        logout()
+            .then(() => {
+                alert("You logged out successfully")
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
 
     const handleMenuToggle = () => {
         if (profileToggle) {
@@ -58,7 +67,7 @@ const Navbar = () => {
                                 </div>
                                 <ul className="py-2" aria-labelledby="user-menu-button">
                                     <li>
-                                        <button onClick={logout} className="px-4 py-2 text-sm text-white">Sign out</button>
+                                        <button onClick={handleLogout} className="px-4 py-2 text-sm text-white">Sign out</button>
                                     </li>
                                 </ul>
                             </div></>
