@@ -5,7 +5,6 @@ import ServiceCard from './ServiceCard';
 
 const PopularServices = () => {
     const { services } = useContext(AuthContext);
-    console.log(services);
     const popular = services.filter(service => service.rating >= 4.8);
     return (
         <div className='w-full grid grid-cols-1 gap-10'>

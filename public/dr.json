@@ -3,28 +3,28 @@
         "id": 1,
         "name": "Dr. Maya Thompson",
         "specialty": "Winter Skin & Coat Care",
-        "image": "https://i.ibb.co/album1/vet1.jpg",
+        "image": "https://i.ibb.co/V00PZCJc/dr1-Edited.jpg",
         "quote": "Cold weather can dry out your pet’s skin — moisturize regularly!"
     },
     {
         "id": 2,
         "name": "Dr. Alex Rivera",
         "specialty": "Emergency Cold Response",
-        "image": "https://i.ibb.co/album1/vet2.jpg",
+        "image": "https://i.ibb.co/pj2MgNN8/cute-dog-consultation-Edited.jpg",
         "quote": "Watch for signs of hypothermia — shivering, weakness, and pale gums."
     },
     {
         "id": 3,
         "name": "Dr. Priya Desai",
         "specialty": "Winter Nutrition",
-        "image": "https://i.ibb.co/album1/vet3.jpg",
+        "image": "https://i.ibb.co/LhpjBtRY/d2-Edited.jpg",
         "quote": "Boost immunity with omega-rich winter diets."
     },
     {
         "id": 4,
         "name": "Dr. Liam Becker",
         "specialty": "Cold-weather Mobility",
-        "image": "https://i.ibb.co/album1/vet4.jpg",
+        "image": "https://i.ibb.co/7tJDb6KJ/Handsome-Doctor-Veterinarian-Smiling-Examining-Pet-in-Vet-Clinic-Checking-Pug-Dog-with-Stethoscope-S.jpg",
         "quote": "Older pets need joint support and shorter walks during cold months."
     }
 ]

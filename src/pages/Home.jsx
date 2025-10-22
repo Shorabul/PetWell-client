@@ -3,6 +3,7 @@ import Hero from '../components/Hero';
 import ServiceCard from '../components/ServiceCard';
 import PopularServices from '../components/PopularServices';
 import Tips from '../components/Tips';
+import Vets from '../components/Vets';
 
 
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
             <Hero></Hero>
             <PopularServices></PopularServices>
             <Tips></Tips>
+            <Vets></Vets>
         </div>
     );
 };
