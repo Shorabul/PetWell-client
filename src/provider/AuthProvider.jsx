@@ -9,6 +9,7 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
     const [services, setServices] = useState([]);
+    const [tips, setTips] = useState([]);
     useEffect(() => {
         fetch('/services.json')
             .then(res => res.json())
@@ -17,9 +18,18 @@ const AuthProvider = ({ children }) => {
                 console.log('Failed to load news.json', error);
             })
     }, []);
+    useEffect(() => {
+        fetch('/tips.json')
+            .then(res => res.json())
+            .then(data => setTips(data)) //.then(setUsers)
+            .catch(error => {
+                console.log('Failed to load news.json', error);
+            })
+    }, []);
 
     const authData = {
         services,
+        tips,
     }
     return (
         <AuthContext value={authData}>
