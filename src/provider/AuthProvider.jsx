@@ -1,5 +1,11 @@
 import React from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, } from "firebase/auth";
+import {
+    createUserWithEmailAndPassword,
+    getAuth, onAuthStateChanged,
+    signInWithEmailAndPassword,
+    signOut,
+    updateProfile,
+} from "firebase/auth";
 import { AuthContext } from './AuthContext';
 import app from '../firebase/firebase.config';
 import { useEffect } from 'react';
@@ -12,7 +18,8 @@ const AuthProvider = ({ children }) => {
     const [tips, setTips] = useState([]);
     const [doctors, setDoctors] = useState([]);
     const [user, setUser] = useState(null);
-    // console.log(user);
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         fetch('/services.json')
             .then(res => res.json())
@@ -39,27 +46,28 @@ const AuthProvider = ({ children }) => {
     }, []);
 
     const createUser = (email, password) => {
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
     const login = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
     const updateUser = (updatedData) => {
         return updateProfile(auth.currentUser, updatedData);
     }
-
+    const logout = () => {
+        return signOut(auth);
+    }
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
+            setLoading(false);
         });
         return () => {
             unsubscribe();
         }
     }, []);
-
-    const logout = () => {
-        return signOut(auth);
-    }
 
     const authData = {
         services,
@@ -71,6 +79,8 @@ const AuthProvider = ({ children }) => {
         logout,
         login,
         updateUser,
+        loading,
+        setLoading,
     }
     return (
         <AuthContext value={authData}>

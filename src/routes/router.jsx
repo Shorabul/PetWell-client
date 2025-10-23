@@ -6,6 +6,9 @@ import Services from '../pages/Services';
 import Profile from '../pages/Profile';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
+import AuthLayout from '../layouts/AuthLayout';
+import ServiceDetails from '../pages/ServiceDetails';
+import PrivateRoute from '../provider/PrivateRoute';
 const router = createBrowserRouter([
     {
         path: '/',
@@ -30,13 +33,25 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: '/login',
-        element: <Login></Login>,
+        path: '/auth',
+        element: <AuthLayout></AuthLayout>,
+        children: [
+            {
+                path: '/auth/login',
+                element: <Login></Login>,
+            },
+            {
+                path: '/auth/signup',
+                element: <Signup></Signup>,
+            },
+        ]
     },
     {
-        path: '/signup',
-        element: <Signup></Signup>,
-    },
+        path: '/service/details',
+        element: <PrivateRoute>
+            <ServiceDetails></ServiceDetails>
+        </PrivateRoute>,
+    }
 ]);
 
 export default router;

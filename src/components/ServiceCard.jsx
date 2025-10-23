@@ -20,11 +20,11 @@ const ServiceCard = ({ pService }) => {
                             <FaStar key={index} />
                         ))}
                     </div>
-                    <span className="text-xs font-semibold rounded-sm ms-3">5.0</span>
+                    <span className="text-xs font-semibold rounded-sm ms-3">{rating}</span>
                 </div>
                 <div className="flex items-center justify-between">
                     <span className="text-3xl font-bold">${price}</span>
-                    <Link to='' className="text-white bg-gray-500 focus:ring-2 focus:outline-none focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">View</Link>
+                    <Link to='/service/details' className="text-white bg-gray-500 focus:ring-2 focus:outline-none focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">View</Link>
                 </div>
             </div>
         </div>
