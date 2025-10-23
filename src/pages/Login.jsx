@@ -2,13 +2,18 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthContext';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     console.log(location.state);
     const [show, setShow] = useState(false);
-    const { login, setUser } = useContext(AuthContext);
+    const { setLoading,
+        login,
+        setUser,
+        googleAuth } = useContext(AuthContext);
 
     const handleLogin = (e) => {
 
@@ -18,14 +23,28 @@ const Login = () => {
         const password = e.target.password.value;
 
         login(email, password).then((userCredential) => {
+            setLoading(false);
             const user = userCredential.user;
-            alert("Login successful");
             setUser(user);
             navigate(`${location.state ? location.state : '/'}`);
+            toast.success("Signin successful");
         }).catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode, errorMessage);
+            toast.error(errorMessage);
+        });
+    }
+    const handleSignInWithGoogle = () => {
+        googleAuth().then((result) => {
+            setLoading(false);
+            const user = result.user;
+            setUser(user);
+            navigate(`${location.state ? location.state : '/'}`);
+            toast.success("Signin successful");
+        }).catch((error) => {
+            console.log(error);
+            toast.error(error.message);
         });
     }
     return (
@@ -43,7 +62,7 @@ const Login = () => {
             {/* Login Form Section */}
             <div className="md:col-span-7 flex items-center justify-center p-6 bg-lime-700 text-white">
                 <div className="w-full max-w-lg bg-lime-800 p-8 rounded shadow-md">
-                    <h2 className="text-3xl font-bold mb-6 text-center">Login</h2>
+                    <h2 className="text-3xl font-bold mb-6 text-center">Welcome back</h2>
                     <form onSubmit={handleLogin} className="space-y-4">
                         <div>
                             <label className="font-semibold block mb-1" htmlFor="email">Email</label>
@@ -58,8 +77,21 @@ const Login = () => {
                         </div>
                         <button type="submit" className="bg-green-600 hover:bg-green-700 text-white w-full py-2 rounded">Sign in</button>
                     </form>
+                    <div className="flex items-center justify-center gap-2 my-2">
+                        <div className="h-px w-16 bg-white"></div>
+                        <span className="text-sm text-green-300">or Sign in with</span>
+                        <div className="h-px w-16 bg-white"></div>
+                    </div>
+                    <div className='space-y-4'>
+                        {/* google */}
+                        <button onClick={handleSignInWithGoogle} className='bg-white text-green-400 font-semibold rounded w-full py-2 flex justify-center items-center gap-5'>
+                            <FcGoogle size={24} />
+                            <span>Continue with Google</span>
+                        </button>
+                    </div>
+
                     <p className="text-sm text-center mt-4">
-                        Have an account? <Link to="/auth/signup" className="text-green-300 underline">Log in</Link>
+                        Have an account? <Link to="/auth/signup" className="text-green-300 hover:underline">Sign up</Link>
                     </p>
                 </div>
             </div>

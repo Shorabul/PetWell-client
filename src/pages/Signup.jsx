@@ -2,11 +2,20 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthContext';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { toast } from 'react-toastify';
+
 
 const Singup = () => {
+
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
-    const { createUser, setUser, updateUser } = useContext(AuthContext);
+    const { setLoading,
+        createUser,
+        setUser,
+        updateUser,
+        googleAuth } = useContext(AuthContext);
+
     const handleSignup = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
@@ -14,24 +23,35 @@ const Singup = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         console.log(name, email, password);
-        createUser(email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                updateUser({ displayName: name, photoURL: photo })
-                    .then(() => {
-                        alert('Signup successful')
-                        setUser(user);
-                        navigate('/')
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    })
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode, errorMessage);
-            })
+        createUser(email, password).then((userCredential) => {
+            const user = userCredential.user;
+            updateUser({ displayName: name, photoURL: photo })
+                .then(() => {
+                    setLoading(false);
+                    setUser(user);
+                    navigate('/');
+                    toast.success('Signup successful');
+                }).catch((error) => {
+                    console.log(error);
+                    toast.error(error.message)
+                })
+        }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage);
+        })
+    }
+    const handleAuthGoogle = () => {
+        googleAuth().then((result) => {
+            setLoading(false);
+            const user = result.user;
+            setUser(user);
+            navigate(`${location.state ? location.state : '/'}`);
+            toast.success("Signup successful");
+        }).catch((error) => {
+            console.log(error)
+            toast.error(error.message);
+        });
     }
     return (
         <div className="min-h-screen grid grid-cols-1 md:grid-cols-12 bg-gray-100 relative">
@@ -69,8 +89,20 @@ const Singup = () => {
                         </div>
                         <button type="submit" className="bg-green-600 hover:bg-green-700 text-white w-full py-2 rounded">Sign Up</button>
                     </form>
+                    <div className="flex items-center justify-center gap-2 my-2">
+                        <div className="h-px w-16 bg-white"></div>
+                        <span className="text-sm text-green-300">or</span>
+                        <div className="h-px w-16 bg-white"></div>
+                    </div>
+                    <div className='space-y-4'>
+                        {/* google */}
+                        <button onClick={handleAuthGoogle} className='bg-white text-green-400 font-semibold rounded w-full py-2 flex justify-center items-center gap-5'>
+                            <FcGoogle size={24} />
+                            <span>Continue with Google</span>
+                        </button>
+                    </div>
                     <p className="text-sm text-center mt-4">
-                        Have an account? <Link to="/auth/login" className="text-green-300 underline">Log in</Link>
+                        Have an account? <Link to="/auth/login" className="text-green-300 hover:underline">Log in</Link>
                     </p>
                 </div>
             </div>
