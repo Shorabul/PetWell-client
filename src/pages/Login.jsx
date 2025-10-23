@@ -64,16 +64,16 @@ const Login = () => {
         });
     }
     return (
-        <div className="min-h-screen grid grid-cols-1 md:grid-cols-12 bg-gray-100 relative">
+        <div className="min-h-screen grid grid-cols-1 md:grid-cols-12 bg-gray-100">
             {/* name and logo */}
-            <div className="flex items-center space-x-3 rtl:space-x-reverse absolute top-5 left-5">
+            {/* <div className="flex items-center space-x-3 rtl:space-x-reverse absolute top-5 left-5">
                 <Link to='/'>
                     <img className="h-8 rounded" src="https://i.ibb.co/vCQ80JMx/Warm-Paws-Logo.jpg" alt="Flowbite Logo" />
                 </Link>
                 <Link to='/'>
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">WarmPaws</span>
                 </Link>
-            </div>
+            </div> */}
             {/* Login Form Section */}
             <div className="md:col-span-7 flex items-center justify-center p-6 bg-lime-700 text-white">
                 <div className="w-full max-w-lg bg-lime-800 p-8 rounded shadow-md">
@@ -93,6 +93,16 @@ const Login = () => {
                                 {show ? <FaEye /> : <FaEyeSlash />}
                             </span>
                         </div>
+                        {/* checkbox and forgot password */}
+                        <div className="flex flex-col sm:flex-row justify-between items-center sm:gap-0 gap-4">
+                            <label htmlFor="remember" className="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" id="remember" name="remember" className="cursor-pointer" />
+                                <span>Remember me</span>
+                            </label>
+                            <Link to="/auth/forgot-password" className="text-sm text-green-300 hover:underline">
+                                Forgot Password?
+                            </Link>
+                        </div>
                         {/* show error */}
                         {passwordError &&
                             <p className='text-red-500'>
@@ -109,7 +119,7 @@ const Login = () => {
                     </div>
                     <div className='space-y-4'>
                         {/* google */}
-                        <button onClick={handleSignInWithGoogle} className='bg-white text-green-400 font-semibold cursor-pointer rounded w-full py-2 flex justify-center items-center gap-5'>
+                        <button onClick={handleSignInWithGoogle} className='bg-white text-green-600 font-semibold cursor-pointer rounded w-full py-2 flex justify-center items-center gap-5'>
                             <FcGoogle size={24} />
                             <span>Continue with Google</span>
                         </button>

@@ -9,6 +9,7 @@ import Signup from '../pages/Signup';
 import AuthLayout from '../layouts/AuthLayout';
 import ServiceDetails from '../pages/ServiceDetails';
 import PrivateRoute from '../provider/PrivateRoute';
+import ForgotPassword from '../pages/ForgotPassword';
 const router = createBrowserRouter([
     {
         path: '/',
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
             {
                 path: '/auth/signup',
                 element: <Signup></Signup>,
+            },
+            {
+                path: '/auth/forgot-password',
+                element: <ForgotPassword></ForgotPassword>,
             },
         ]
     },

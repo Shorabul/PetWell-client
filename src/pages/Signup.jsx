@@ -72,16 +72,16 @@ const Singup = () => {
         });
     }
     return (
-        <div className="min-h-screen grid grid-cols-1 md:grid-cols-12 bg-gray-100 relative">
+        <div className="min-h-screen grid grid-cols-1 md:grid-cols-12 bg-gray-100">
             {/* name and logo */}
-            <div className="flex items-center space-x-3 rtl:space-x-reverse absolute top-5 left-5">
+            {/* <div className="flex items-center space-x-3 rtl:space-x-reverse absolute top-5 left-5">
                 <Link to='/'>
                     <img className="h-8 rounded" src="https://i.ibb.co/vCQ80JMx/Warm-Paws-Logo.jpg" alt="Flowbite Logo" />
                 </Link>
                 <Link to='/'>
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">WarmPaws</span>
                 </Link>
-            </div>
+            </div> */}
             {/* Login Form Section */}
             <div className="md:col-span-7 flex items-center justify-center p-6 bg-lime-700 text-white">
                 <div className="w-full max-w-lg bg-lime-800 p-8 rounded shadow-md">
