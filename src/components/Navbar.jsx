@@ -3,17 +3,18 @@ import { HiOutlineMenu } from "react-icons/hi";
 import { RxCross1 } from "react-icons/rx";
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../provider/AuthContext';
-
-
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
+
     const [toggle, setToggle] = useState(false);
     const [profileToggle, setProfileToggle] = useState(false);
     const { user, logout } = useContext(AuthContext);
+
     const handleLogout = () => {
         logout()
             .then(() => {
-                alert("You logged out successfully")
+                toast.success("You logged out successfully")
             })
             .catch(error => {
                 console.log(error);
@@ -24,7 +25,7 @@ const Navbar = () => {
         if (profileToggle) {
             setProfileToggle(false);
         }
-        setToggle(!toggle)
+        setToggle(!toggle);
     }
     const handleProfileToggle = () => {
         if (toggle) {
@@ -35,6 +36,7 @@ const Navbar = () => {
     return (
         <nav className="bg-lime-700">
             <div className="w-11/12 flex flex-wrap items-center justify-between mx-auto p-4">
+                {/* name and logo */}
                 <div className="flex items-center space-x-3 rtl:space-x-reverse">
                     <Link to='/'>
                         <img className="h-8 rounded" src="https://i.ibb.co/vCQ80JMx/Warm-Paws-Logo.jpg" alt="WarmPaws Logo" />

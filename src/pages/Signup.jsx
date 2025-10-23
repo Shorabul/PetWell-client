@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 
 const Singup = () => {
-
+    const [passwordError, setPasswordError] = useState("");
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
     const { setLoading,
@@ -22,7 +22,25 @@ const Singup = () => {
         const photo = e.target.photoURL.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(name, email, password);
+        const hasUppercase = /[A-Z]/.test(password);
+        const hasLowercase = /[a-z]/.test(password);
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        const isLongEnough = password.length >= 6;
+        if (!hasUppercase) {
+            setPasswordError("Password must include at least one uppercase letter.");
+            return;
+        } else if (!hasLowercase) {
+            setPasswordError("Password must include at least one lowercase letter.");
+            return;
+        } else if (!hasSpecialChar) {
+            setPasswordError("Password must include at least one special character.");
+            return;
+        } else if (!isLongEnough) {
+            setPasswordError("Password must be at least 6 characters long.");
+            return;
+        } else {
+            setPasswordError("");
+        }
         createUser(email, password).then((userCredential) => {
             const user = userCredential.user;
             updateUser({ displayName: name, photoURL: photo })
@@ -33,7 +51,7 @@ const Singup = () => {
                     toast.success('Signup successful');
                 }).catch((error) => {
                     console.log(error);
-                    toast.error(error.message)
+                    toast.error(error.message);
                 })
         }).catch((error) => {
             const errorCode = error.code;
@@ -55,6 +73,7 @@ const Singup = () => {
     }
     return (
         <div className="min-h-screen grid grid-cols-1 md:grid-cols-12 bg-gray-100 relative">
+            {/* name and logo */}
             <div className="flex items-center space-x-3 rtl:space-x-reverse absolute top-5 left-5">
                 <Link to='/'>
                     <img className="h-8 rounded" src="https://i.ibb.co/vCQ80JMx/Warm-Paws-Logo.jpg" alt="Flowbite Logo" />
@@ -68,27 +87,39 @@ const Singup = () => {
                 <div className="w-full max-w-lg bg-lime-800 p-8 rounded shadow-md">
                     <h2 className="text-3xl font-bold mb-6 text-center">Login</h2>
                     <form onSubmit={handleSignup} className="space-y-4">
+                        {/* name */}
                         <div>
                             <label className="font-semibold block mb-1" htmlFor="name">Name</label>
                             <input type="text" name="name" placeholder="Name" className="bg-white text-gray-900 w-full p-2 rounded" />
                         </div>
+                        {/* photoURL */}
                         <div>
                             <label className="font-semibold block mb-1" htmlFor="photoURL">Photo URL</label>
                             <input type="url" name="photoURL" placeholder="Photo URL" className="bg-white text-gray-900 w-full p-2 rounded" />
                         </div>
+                        {/* email */}
                         <div>
                             <label className="font-semibold block mb-1" htmlFor="email">Email</label>
                             <input type="email" name="email" placeholder="Email" className="bg-white text-gray-900 w-full p-2 rounded" />
                         </div>
+                        {/* password */}
                         <div className="relative">
                             <label className="font-semibold block mb-1" htmlFor="password">Password</label>
                             <input type={show ? 'text' : 'password'} name="password" placeholder="Password" className="bg-white text-gray-900 w-full p-2 rounded" />
+                            {/* password show and hide */}
                             <span onClick={() => setShow(!show)} className="text-black absolute top-9 right-3 cursor-pointer">
                                 {show ? <FaEye /> : <FaEyeSlash />}
                             </span>
                         </div>
-                        <button type="submit" className="bg-green-600 hover:bg-green-700 text-white w-full py-2 rounded">Sign Up</button>
+                        {/* show error */}
+                        {passwordError &&
+                            <p className='text-red-500'>
+                                *{passwordError}</p>
+                        }
+                        {/* signup button */}
+                        <button type="submit" className="bg-green-600 hover:bg-green-700 text-white cursor-pointer w-full py-2 rounded">Sign Up</button>
                     </form>
+                    {/* Divider */}
                     <div className="flex items-center justify-center gap-2 my-2">
                         <div className="h-px w-16 bg-white"></div>
                         <span className="text-sm text-green-300">or</span>
@@ -96,13 +127,14 @@ const Singup = () => {
                     </div>
                     <div className='space-y-4'>
                         {/* google */}
-                        <button onClick={handleAuthGoogle} className='bg-white text-green-400 font-semibold rounded w-full py-2 flex justify-center items-center gap-5'>
+                        <button onClick={handleAuthGoogle} className='bg-white text-green-400 font-semibold cursor-pointer rounded w-full py-2 flex justify-center items-center gap-5'>
                             <FcGoogle size={24} />
                             <span>Continue with Google</span>
                         </button>
                     </div>
+                    {/* link to singin */}
                     <p className="text-sm text-center mt-4">
-                        Have an account? <Link to="/auth/login" className="text-green-300 hover:underline">Log in</Link>
+                        Have an account? <Link to="/auth/login" className="text-green-300 cursor-pointer hover:underline">Log in</Link>
                     </p>
                 </div>
             </div>
@@ -111,41 +143,6 @@ const Singup = () => {
                 <img className="w-full h-full object-cover" src="https://i.ibb.co/6JFP9sZ5/login-image.jpg" alt="Login Visual" />
             </div>
         </div>
-
-        // <div className="grid grid-col-6">
-        //     <div className="bg-lime-700 col-span-3 text-white p-10 rounded shadow-md">
-        //         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-        //         <form onSubmit={handleSignup} className=''>
-        //             <div>
-        //                 <label className='font-semibold' htmlFor="name">Name</label>
-        //                 <input type="name" name='name' placeholder="Name" className="bg-white placeholder:text-gray-500 text-gray-900 w-full mb-4 p-2 border rounded" />
-        //             </div>
-        //             <div>
-        //                 <label className='font-semibold' htmlFor="name">Name</label>
-        //                 <input type="url" name='photoURL' placeholder="PhotoURL" className="bg-white placeholder:text-gray-500 text-gray-900 w-full mb-4 p-2 border rounded" />
-        //             </div>
-        //             <div>
-        //                 <label className='font-semibold' htmlFor="email">Email</label>
-        //                 <input type='email' name='email' placeholder="Email" className="bg-white placeholder:text-gray-500 text-gray-900 w-full mb-4 p-2 border rounded" />
-        //             </div>
-        //             <div className='relative'>
-        //                 <label className='font-semibold' htmlFor="password">Password</label>
-        //                 <input type={show ? 'text' : 'password'} name='password' placeholder="Password" className="bg-white placeholder:text-gray-500 text-gray-900 w-full mb-4 p-2 border rounded" />
-        //                 <span onClick={() => setShow(!show)} className='text-black absolute top-9.5 right-2'>
-        //                     {show ? <FaEye /> : <FaEyeSlash />
-        //                     }
-        //                 </span>
-        //             </div>
-        //             <button type='submit' className="bg-green-600 hover:bg-green-700 focus:ring-green-600 text-white w-full py-2 rounded">Sign up</button>
-        //         </form>
-        //         <p className="text-sm text-center mt-4">
-        //             Have an account? <Link to="/login" className="text-green-400">Log in</Link>
-        //         </p>
-        //     </div>
-        //     <div className='col-span-3'>
-        //         <img className='' src="https://i.ibb.co/6JFP9sZ5/login-image.jpg" alt="" />
-        //     </div>
-        // </div>
     );
 };
 
