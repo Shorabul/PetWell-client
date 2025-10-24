@@ -33,11 +33,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/profile',
-                element: <Profile></Profile>,
+                element: <PrivateRoute><Profile></Profile></PrivateRoute>,
             },
             {
                 path: '/update-profile',
-                element: <UpdateProfile></UpdateProfile>,
+                element: <PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>,
             }
         ]
     },
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/book-service/:id',
-        element: <BookServiceForm></BookServiceForm>,
+        element: <PrivateRoute><BookServiceForm></BookServiceForm></PrivateRoute>,
     },
 ]);
 
