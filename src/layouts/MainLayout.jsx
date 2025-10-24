@@ -9,9 +9,9 @@ const MainLayout = () => {
     // const isLoading = state === "loading";
     // console.log(state);
     return (
-        <div className='flex flex-col min-h-screen'>
+        <div className='flex flex-col min-h-screen bg-gradient-to-r from-[#617620] to-[#0f181f]'>
             <Navbar></Navbar>
-            <section className="flex-1">
+            <section className="flex-1 py-10">
                 {state === 'loading' ? <Loading></Loading> : <Outlet></Outlet>}
             </section>
             <Footer></Footer>

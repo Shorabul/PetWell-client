@@ -5,7 +5,7 @@ import Loading from '../pages/Loading';
 const AuthLayout = () => {
     const { state } = useNavigation();
     return (
-        <div className='bg-lime-700 min-h-screen relative flex justify-center items-center'>
+        <div className='bg-gradient-to-r from-[#617620] to-[#0f181f] min-h-screen relative flex justify-center items-center'>
             {/* name and logo */}
             <div className="flex items-center gap-3 absolute top-5 left-5">
                 <Link to='/'>

@@ -7,20 +7,22 @@ import { toast } from 'react-toastify';
 
 const Login = () => {
 
+
     const [passwordError, setPasswordError] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
-    console.log(location.state);
     const [show, setShow] = useState(false);
     const { setLoading,
         login,
         setUser,
         googleAuth } = useContext(AuthContext);
 
-    const handleLogin = (e) => {
+    const [email, setEmail] = useState('');
 
+    const handleLogin = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
+        setEmail(email);
         const password = e.target.password.value;
 
         login(email, password).then((userCredential) => {
@@ -64,7 +66,7 @@ const Login = () => {
         });
     }
     return (
-        <div className="min-h-screen grid grid-cols-1 md:grid-cols-12 bg-gray-100">
+        <div className="min-h-screen w-full grid grid-cols-1 md:grid-cols-12">
             {/* name and logo */}
             {/* <div className="flex items-center space-x-3 rtl:space-x-reverse absolute top-5 left-5">
                 <Link to='/'>
@@ -75,31 +77,31 @@ const Login = () => {
                 </Link>
             </div> */}
             {/* Login Form Section */}
-            <div className="md:col-span-7 flex items-center justify-center p-6 bg-lime-700 text-white">
-                <div className="w-full max-w-lg bg-lime-800 p-8 rounded shadow-md">
-                    <h2 className="text-3xl font-bold mb-6 text-center">Welcome back</h2>
-                    <form onSubmit={handleLogin} className="space-y-4">
+            <div className="md:col-span-7 flex items-center justify-center text-white">
+                <div className="w-full max-w-lg p-8 rounded-lg shadow-[0px_0px_20px_#617620]">
+                    <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold mb-6 text-center">Welcome back</h2>
+                    <form onSubmit={handleLogin} className="space-y-4 text-xs sm:text-sm md:text-base">
                         {/* email */}
                         <div>
                             <label className="font-semibold block mb-1" htmlFor="email">Email</label>
-                            <input type="email" name="email" placeholder="Email" className="bg-white text-gray-900 w-full p-2 rounded" />
+                            <input onChange={(e) => { setEmail(e.target.value) }} value={email} type="email" name="email" placeholder="Email" className="bg-white text-[#0f181f] w-full p-2 rounded" />
                         </div>
                         {/* password */}
                         <div className="relative">
                             <label className="font-semibold block mb-1" htmlFor="password">Password</label>
-                            <input type={show ? 'text' : 'password'} name="password" placeholder="Password" className="bg-white text-gray-900 w-full p-2 rounded" />
+                            <input type={show ? 'text' : 'password'} name="password" placeholder="Password" className="bg-white text-[#0f181f] w-full p-2 rounded" />
                             {/* password show and hide */}
-                            <span onClick={() => setShow(!show)} className="text-black absolute top-9 right-3 cursor-pointer">
+                            <span onClick={() => setShow(!show)} className="text-black absolute top-8 right-4 cursor-pointer">
                                 {show ? <FaEye /> : <FaEyeSlash />}
                             </span>
                         </div>
                         {/* checkbox and forgot password */}
-                        <div className="flex flex-col sm:flex-row justify-between items-center sm:gap-0 gap-4">
+                        <div className="flex justify-between items-center">
                             <label htmlFor="remember" className="flex items-center gap-2 cursor-pointer">
                                 <input type="checkbox" id="remember" name="remember" className="cursor-pointer" />
                                 <span>Remember me</span>
                             </label>
-                            <Link to="/auth/forgot-password" className="text-sm text-green-300 hover:underline">
+                            <Link to="/auth/forgot-password" state={{ email }} className="text-sm text-green-300 hover:underline">
                                 Forgot Password?
                             </Link>
                         </div>
@@ -109,7 +111,7 @@ const Login = () => {
                                 *{passwordError}</p>
                         }
                         {/* signin button */}
-                        <button type="submit" className="bg-green-600 hover:bg-green-700 text-white cursor-pointer w-full py-2 rounded">Sign in</button>
+                        <button type="submit" className="bg-green-600 hover:bg-green-700 text-white font-medium cursor-pointer w-full py-2 rounded">Sign in</button>
                     </form>
                     {/* Divider */}
                     <div className="flex items-center justify-center gap-2 my-2">

@@ -1,22 +1,24 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../provider/AuthContext';
-import { useNavigate } from 'react-router';
+import { useLocation } from 'react-router';
 
 const ForgotPassword = () => {
 
-    const emailRef = useRef(null);
+    const location = useLocation();
+    const [email, setEmail] = useState(location.state?.email || '');
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
     const { userPasswordResetEmail } = useContext(AuthContext)
-    const navigate = useNavigate();
-
+    // const navigate = useNavigate();
+    const [success, setSuccess] = useState(false);
     const handlePasswordReset = (e) => {
-        const email = emailRef.current.value;
         e.preventDefault();
         userPasswordResetEmail(email).then(() => {
             setMessage("Password reset email sent. Check your inbox.");
             setError('');
-            navigate('/auth/login')
+            setSuccess(true);
+            // navigate('/auth/login');
+            // window.location.href = "https://mail.google.com/";
         }).catch((error) => {
             if (error.code === "auth/user-not-found") {
                 setError("No account found with this email.");
@@ -27,6 +29,15 @@ const ForgotPassword = () => {
             console.log(error);
         });
     }
+    useEffect(() => {
+        if (success) {
+            const timer = setTimeout(() => {
+                window.open("https://mail.google.com/", "_blank");
+            }, 1000); // 1000ms = 1 second
+
+            return () => clearTimeout(timer); // cleanup if component unmounts
+        }
+    }, [success]);
 
     return (
         <div className="bg-lime-800 p-6 rounded shadow text-white">
@@ -36,7 +47,8 @@ const ForgotPassword = () => {
                     type="email"
                     placeholder="Enter your email"
                     className="bg-white text-gray-900 w-full p-2 rounded"
-                    ref={emailRef}
+                    onChange={(e) => { setEmail(e.target.value) }}
+                    value={email}
                     required
                 />
                 <button type="submit" className="bg-green-600 hover:bg-green-700 text-white cursor-pointer w-full py-2 rounded">

@@ -10,10 +10,14 @@ import AuthLayout from '../layouts/AuthLayout';
 import ServiceDetails from '../pages/ServiceDetails';
 import PrivateRoute from '../provider/PrivateRoute';
 import ForgotPassword from '../pages/ForgotPassword';
+import BookServiceForm from '../pages/BookServiceForm';
+import UpdateProfile from '../pages/UpdateProfile';
+import Error from '../pages/Error';
 const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout></MainLayout>,
+        errorElement: <Error></Error>,
         children: [
             {
                 index: true,
@@ -25,11 +29,15 @@ const router = createBrowserRouter([
             },
             {
                 path: '/services',
-                element: <Services></Services>
+                element: <Services></Services>,
             },
             {
                 path: '/profile',
-                element: <Profile></Profile>
+                element: <Profile></Profile>,
+            },
+            {
+                path: '/update-profile',
+                element: <UpdateProfile></UpdateProfile>,
             }
         ]
     },
@@ -52,11 +60,15 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: '/service/details',
-        element: <PrivateRoute>
+        path: '/service-details/:id',
+        element: (<PrivateRoute>
             <ServiceDetails></ServiceDetails>
-        </PrivateRoute>,
-    }
+        </PrivateRoute>),
+    },
+    {
+        path: '/book-service/:id',
+        element: <BookServiceForm></BookServiceForm>,
+    },
 ]);
 
 export default router;

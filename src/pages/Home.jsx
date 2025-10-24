@@ -9,9 +9,11 @@ import Vets from '../components/Vets';
 const Home = () => {
 
     return (
-        <div className='py-10 w-11/12 mx-auto space-y-20'>
+        <div className='w-11/12 mx-auto space-y-20'>
             <Hero></Hero>
-            <PopularServices></PopularServices>
+            <div className='w-1/2 mx-auto'>
+                <PopularServices></PopularServices>
+            </div>
             <Tips></Tips>
             <Vets></Vets>
         </div>

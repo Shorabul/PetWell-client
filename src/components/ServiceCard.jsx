@@ -4,27 +4,34 @@ import { FaStar } from "react-icons/fa6";
 
 
 const ServiceCard = ({ pService }) => {
-    const { serviceName, image, rating, price } = pService
+    const { serviceId, serviceName, image, rating, price } = pService
     return (
-        <div className="bg-lime-700 grid grid-cols-1 md:grid-cols-2 overflow-hidden rounded-lg shadow-sm">
-            <a href="#">
-                <img className="h-full" src={image} alt="product image" />
-            </a>
-            <div className="py-10 px-10 flex flex-col justify-between text-white">
-                <a href="#">
-                    <h5 className="text-5xl font-semibold tracking-tight">{serviceName}</h5>
-                </a>
-                <div className="flex items-center mt-2.5 mb-5">
-                    <div className="flex items-center space-x-1 text-yellow-500">
-                        {Array.from({ length: Math.floor(rating) }).map((_, index) => (
-                            <FaStar key={index} />
-                        ))}
-                    </div>
-                    <span className="text-xs font-semibold rounded-sm ms-3">{rating}</span>
+        <div className="bg-[#7A8A35] w-full max-w-sm mx-auto rounded-xl shadow-md hover:scale-105 transition ease-in-out flex flex-col justify-between hover:bg-[#0f181f50]">
+            {/* Image */}
+            <div className="overflow-hidden">
+                <img
+                    className="w-full h-[250px] object-cover rounded-t-lg"
+                    src={image}
+                    alt={serviceName}
+                />
+                <h5 className="text-left text-white text-sm sm:text-base md:text-lg lg:text-xl font-semibold p-2 md:p-4 lg:p-5">{serviceName}</h5>
+            </div>
+            {/* Text Section */}
+            <div className="text-white text-left space-y-1 md:space-y-2 p-2 md:p-4 lg:p-5">
+
+                {/* Rating */}
+                <div className="flex items-center space-x-1 text-yellow-400">
+                    {Array.from({ length: Math.floor(rating) }).map((_, index) => (
+                        <FaStar className='text-xs sm:text-sm md:text-base' key={index} />
+                    ))}
+                    <span className="text-xs sm:text-sm md:text-base font-medium ml-1">{rating}</span>
                 </div>
-                <div className="flex items-center justify-between">
-                    <span className="text-3xl font-bold">${price}</span>
-                    <Link to='/service/details' className="text-white bg-gray-500 focus:ring-2 focus:outline-none focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">View</Link>
+
+                {/* Price + Button */}
+                <div className="flex items-center justify-between pt-2">
+                    <span className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold">${price}</span>
+                    <Link to={`/service-details/${serviceId}`} className="bg-white text-[#7A8A35] hover:bg-lime-500 hover:text-white font-semibold rounded-md text-xs md:text-sm px-3 md:px-5 py-1.5 md:py-2.5 text-center transition">View
+                    </Link>
                 </div>
             </div>
         </div>

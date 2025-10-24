@@ -1,10 +1,10 @@
 import React from 'react';
 
-const TipCad = ({ tip }) => {
+const TipCad = ({ tip, className }) => {
     return (
-        <li className='w-ful py-5 px-10 bg-lime-700'>
+        <div className={`bg-[#f2ebb2] text-[#101921] text-left rounded-lg w-ful py-5 px-10 hover:scale-105 transition ease-in-out ${className}`}>
             {tip.tip}
-        </li>
+        </div>
     );
 };
 

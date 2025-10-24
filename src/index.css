@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+button {
+    @apply active:scale-110 transition-all ease-in-out;
+}
+
+a.active {
+    @apply text-green-700;
+}
