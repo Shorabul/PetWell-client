@@ -1,38 +1,40 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../provider/AuthContext';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { FaArrowLeft, FaUserCircle } from 'react-icons/fa';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
+import toast from 'react-hot-toast'
 
 const UpdateProfile = () => {
     const { user, updateUser, setLoading } = useContext(AuthContext);
     const [name, setName] = useState(user?.displayName || '');
     const [photoURL, setPhotoURL] = useState(user?.photoURL || '');
-
+    const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log('Update:', { name, photoURL });
         updateUser({ displayName: name, photoURL: photoURL })
             .then(() => {
                 setLoading(false);
-                // setUser(user);
-                // navigate('/');
-                toast.success('Profile updated successfully!')
+                toast.success('Profile updated successfully!');
+                navigate("/profile");
+
             }).catch((error) => {
+                setLoading(false);
                 console.log(error);
                 toast.error(error.message);
             })
     };
 
     return (
-        <div className="min-h-screen bg-[#f8faf5] flex justify-center items-center p-6">
-            <div className="bg-white w-full max-w-lg rounded-3xl shadow-[0_0_40px_rgba(97,118,32,0.25)] p-8 space-y-6">
+        <div className="min-h-screen flex justify-center items-center p-6">
+            <div className="bg-[#0f181f] w-full max-w-lg rounded-3xl shadow-[0_0_40px_rgba(97,118,32,0.25)] p-8 space-y-6">
 
                 {/* Back Button */}
                 <div className="flex items-center justify-between">
                     <Link
                         to="/profile"
-                        className="flex items-center gap-2 text-green-700 hover:underline font-medium"
+                        className="flex items-center gap-2 text-white/90 hover:text-[#a1c935] font-medium transition-colors"
                     >
                         <FaArrowLeft /> Back to Profile
                     </Link>
@@ -40,11 +42,11 @@ const UpdateProfile = () => {
 
                 {/* Header */}
                 <div className="text-center space-y-3">
-                    <FaUserCircle className="text-5xl text-green-600 mx-auto" />
-                    <h2 className="text-2xl font-semibold text-gray-800">
+                    <FaUserCircle className="text-5xl text-[#a1c935] mx-auto" />
+                    <h2 className="text-2xl font-semibold text-white/90">
                         Update Your Profile
                     </h2>
-                    <p className="text-gray-500 text-sm">
+                    <p className="text-gray-400 text-sm">
                         Change your display name or profile picture below.
                     </p>
                 </div>
@@ -53,22 +55,22 @@ const UpdateProfile = () => {
                 <form onSubmit={handleSubmit} className="space-y-5">
                     {/* Name */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                            Display Name
+                        <label className="block text-sm font-medium text-white/90 mb-1">
+                            Name
                         </label>
                         <input
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             placeholder="Enter your name"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:outline-none"
+                            className="w-full px-4 py-2 border border-[#2c2c2c] bg-[#1c1c1c] text-white/90 rounded-lg focus:ring-2 focus:ring-[#a1c935] focus:outline-none transition-all duration-300"
                             required
                         />
                     </div>
 
                     {/* Photo URL */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                        <label className="block text-sm font-medium text-white/90 mb-1">
                             Profile Image URL
                         </label>
                         <input
@@ -76,7 +78,7 @@ const UpdateProfile = () => {
                             value={photoURL}
                             onChange={(e) => setPhotoURL(e.target.value)}
                             placeholder="https://example.com/your-photo.jpg"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:outline-none"
+                            className="w-full px-4 py-2 border border-[#2c2c2c] bg-[#1c1c1c] text-white/90 rounded-lg focus:ring-2 focus:ring-[#a1c935] focus:outline-none transition-all duration-300"
                         />
                     </div>
 
@@ -86,7 +88,7 @@ const UpdateProfile = () => {
                             <img
                                 src={photoURL}
                                 alt="Preview"
-                                className="w-28 h-28 rounded-full object-cover border-4 border-green-600 mt-3"
+                                className="w-28 h-28 rounded-full object-cover border-4 border-white mt-3"
                             />
                         </div>
                     )}
@@ -94,7 +96,7 @@ const UpdateProfile = () => {
                     {/* Submit */}
                     <button
                         type="submit"
-                        className="w-full bg-green-700 hover:bg-green-800 text-white font-semibold py-2.5 rounded-lg shadow-md transition-all"
+                        className="w-full gap-2 bg-[#1c1c1c] focus:bg-[#a1c935] hover:bg-[#a1c935] shadow-[0_0_10px_#617620] text-white font-semibold px-5 sm:px-6 py-2.5 rounded-lg transition-all duration-200 hover:scale-[1.02]"
                     >
                         Save Changes
                     </button>

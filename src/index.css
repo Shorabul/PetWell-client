@@ -1,9 +1,17 @@
 @import "tailwindcss";
 
 button {
-    @apply active:scale-110 transition-all ease-in-out;
+    @apply active:scale-102 transition-all ease-in-out;
+}
+
+nav ul a {
+    @apply hover:text-green-600;
 }
 
 a.active {
-    @apply text-green-700;
+    @apply md:text-green-700;
+}
+
+a.active {
+    @apply underline;
 }

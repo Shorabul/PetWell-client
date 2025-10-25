@@ -6,6 +6,7 @@ import {
     signInWithEmailAndPassword,
     signInWithPopup,
     signOut,
+    updateEmail,
     updateProfile,
 } from "firebase/auth";
 import { AuthContext } from './AuthContext';
@@ -21,29 +22,37 @@ const AuthProvider = ({ children }) => {
     const [doctors, setDoctors] = useState([]);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    const [products, setProducts] = useState([]);
     useEffect(() => {
         fetch('/services.json')
             .then(res => res.json())
             .then(data => setServices(data)) //.then(setUsers)
             .catch(error => {
-                console.log('Failed to load news.json', error);
+                console.log('Failed to load services.json', error);
             })
     }, []);
     useEffect(() => {
         fetch('/tips.json')
             .then(res => res.json())
-            .then(data => setTips(data)) //.then(setUsers)
+            .then(data => setTips(data))
             .catch(error => {
-                console.log('Failed to load news.json', error);
+                console.log('Failed to load tips.json', error);
             })
     }, []);
     useEffect(() => {
         fetch('/dr.json')
             .then(res => res.json())
-            .then(data => setDoctors(data)) //.then(setUsers)
+            .then(data => setDoctors(data))
             .catch(error => {
-                console.log('Failed to load news.json', error);
+                console.log('Failed to load dr.json', error);
+            })
+    }, []);
+    useEffect(() => {
+        fetch('/product.json')
+            .then(res => res.json())
+            .then(data => setProducts(data))
+            .catch(error => {
+                console.log('Failed to load products.json', error);
             })
     }, []);
 
@@ -63,6 +72,10 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return updateProfile(auth.currentUser, updatedData);
     }
+    const updateUserEmail = (newEmail) => {
+        setLoading(true);
+        return updateEmail(auth.currentUser, newEmail);
+    }
     const logout = () => {
         return signOut(auth);
     }
@@ -71,7 +84,13 @@ const AuthProvider = ({ children }) => {
     }
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
+            // setUser(currentUser);
+            // setLoading(false);
+            if (currentUser) {
+                setUser(currentUser);
+            } else {
+                setUser(null);
+            }
             setLoading(false);
         });
         return () => {
@@ -93,6 +112,8 @@ const AuthProvider = ({ children }) => {
         setLoading,
         googleAuth,
         userPasswordResetEmail,
+        updateUserEmail,
+        products,
     }
     return (
         <AuthContext value={authData}>

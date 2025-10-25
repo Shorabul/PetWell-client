@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { toast } from 'react-toastify';
-import { FaStar, FaEnvelope, FaStore, FaArrowLeft } from "react-icons/fa";
-const BookServiceForm = ({ serviceName, providerName }) => {
+// import { toast } from 'react-toastify';
+import { FaArrowLeft } from "react-icons/fa";
+import { useLocation } from 'react-router';
+import toast from 'react-hot-toast'
+
+const BookServiceForm = () => {
+    const location = useLocation();
+
+    const { serviceName, providerName } = location.state || {};
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -26,21 +32,20 @@ const BookServiceForm = ({ serviceName, providerName }) => {
     };
 
     return (
-        <div className="bg-white rounded-xl shadow-[0_0_35px_rgba(97,118,32,0.15)] p-8 max-w-lg w-full mx-auto mt-10">
+        <div className="bg-[#f8faf5] rounded-lg w-screen h-screen flex flex-col justify-center items-center">
             {/* Back Button */}
             <div className="absolute top-5 left-5">
                 <button
                     onClick={() => navigate(-1)}
-                    className="flex items-center gap-2 bg-white/80 backdrop-blur-sm hover:bg-white text-green-700 px-4 py-2 rounded-lg shadow-sm font-medium transition"
+                    className="text-sm md:text-base flex items-center gap-2 bg-white/80 backdrop-blur-sm hover:bg-white text-green-700 px-4 py-2 rounded-lg shadow-sm font-medium transition"
                 >
-                    <FaArrowLeft /> Back
+                    <FaArrowLeft className="" /> Back
                 </button>
             </div>
-            <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-                Book Service
-            </h2>
-
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5 w-lg md:w-xl lg:w-2xl bg-white/50 rounded-3xl shadow-[0_0_35px_rgba(97,118,32,0.15)] p-8">
+                <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+                    Book Service
+                </h2>
                 <div>
                     <label
                         htmlFor="name"
@@ -84,8 +89,8 @@ const BookServiceForm = ({ serviceName, providerName }) => {
                     Book Now
                 </button>
             </form>
-
             <div className="mt-5 text-center text-sm text-gray-500">
+
                 <p>
                     Booking for:{" "}
                     <span className="font-semibold text-green-700">{serviceName}</span>

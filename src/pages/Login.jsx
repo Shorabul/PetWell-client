@@ -3,67 +3,76 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthContext';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { toast } from 'react-toastify';
-
+// import { toast } from 'react-toastify';
+import ProfileTost from './profileTost';
+import toast from 'react-hot-toast'
 const Login = () => {
 
-
-    const [passwordError, setPasswordError] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
     const [show, setShow] = useState(false);
-    const { setLoading,
+    const [email, setEmail] = useState('');
+    const [passwordError, setPasswordError] = useState("");
+    const {
+        setLoading,
         login,
         setUser,
-        googleAuth } = useContext(AuthContext);
-
-    const [email, setEmail] = useState('');
-
+        googleAuth,
+        user
+    } = useContext(AuthContext);
+    if (user) {
+        navigate('/');
+    }
     const handleLogin = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         setEmail(email);
         const password = e.target.password.value;
 
-        login(email, password).then((userCredential) => {
-            setLoading(false);
-            const user = userCredential.user;
-            setUser(user);
-            navigate(`${location.state ? location.state : '/'}`);
-            toast.success("Signin successful");
-        }).catch((error) => {
-            console.log(error);
-            console.log(error.code);
-            console.log(error.message);
-            switch (error.code) {
-                case "auth/user-not-found":
-                    setPasswordError("No account found with this email.");
-                    break;
-                case "auth/wrong-password":
-                    setPasswordError("Incorrect password. Please try again.");
-                    break;
-                case "auth/too-many-requests":
-                    setPasswordError("Too many failed attempts. Try again later.");
-                    break;
-                case "auth/user-disabled":
-                    setPasswordError("Your account has been disabled.");
-                    break;
-                default:
-                    setPasswordError("Login failed. Please try again.");
-            }
-        });
+        login(email, password)
+            .then((userCredential) => {
+                setLoading(false);
+                const user = userCredential.user;
+                setUser(user);
+                navigate(`${location.state ? location.state : '/'}`);
+                toast.success(`Welcome Back ${user.displayName}`);
+                // <ProfileTost user={user} text="Welcome Back"></ProfileTost>
+            }).catch((error) => {
+                console.log(error);
+                console.log(error.code);
+                console.log(error.message);
+                switch (error.code) {
+                    case "auth/user-not-found":
+                        setPasswordError("No account found with this email.");
+                        break;
+                    case "auth/wrong-password":
+                        setPasswordError("Incorrect password. Please try again.");
+                        break;
+                    case "auth/too-many-requests":
+                        setPasswordError("Too many failed attempts. Try again later.");
+                        break;
+                    case "auth/user-disabled":
+                        setPasswordError("Your account has been disabled.");
+                        break;
+                    default:
+                        setPasswordError("Login failed. Please try again.");
+                }
+            });
     }
     const handleSignInWithGoogle = () => {
-        googleAuth().then((result) => {
-            setLoading(false);
-            const user = result.user;
-            setUser(user);
-            navigate(`${location.state ? location.state : '/'}`);
-            toast.success("Signin successful");
-        }).catch((error) => {
-            console.log(error);
-            toast.error(error.message);
-        });
+        googleAuth()
+            .then((result) => {
+                setLoading(false);
+                const user = result.user;
+                setUser(user);
+                navigate(`${location.state ? location.state : '/'}`);
+                // toast.success("Signin successful");
+                toast.success(`Welcome Back ${user.displayName}`);
+                // <ProfileTost user={user} text="Welcome Back"></ProfileTost>
+            }).catch((error) => {
+                console.log(error);
+                toast.error(error.message);
+            });
     }
     return (
         <div className="min-h-screen w-full grid grid-cols-1 md:grid-cols-12">
@@ -79,7 +88,7 @@ const Login = () => {
             {/* Login Form Section */}
             <div className="md:col-span-7 flex items-center justify-center text-white">
                 <div className="w-full max-w-lg p-8 rounded-lg shadow-[0px_0px_20px_#617620]">
-                    <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold mb-6 text-center">Welcome back</h2>
+                    <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold mb-6 text-center">Login</h2>
                     <form onSubmit={handleLogin} className="space-y-4 text-xs sm:text-sm md:text-base">
                         {/* email */}
                         <div>

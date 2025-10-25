@@ -1,0 +1,48 @@
+import React from 'react';
+import { useState } from 'react';
+import toast from 'react-hot-toast'
+
+const UpdateNumber = () => {
+    const [number, setNumber] = useState(null);
+    const handleSubmit = () => {
+        if (!number) {
+            toast.error("Please enter a valid number.");
+            return;
+        }
+        toast.success('Number updated successfully!')
+
+    }
+    return (
+        <div className="min-h-screen flex justify-center items-center text-gray-200">
+            <form
+                onSubmit={handleSubmit}
+                className="bg-gradient-to-r from-[#0f181f] to-[#617620] p-8 rounded-2xl w-full max-w-md shadow-xl space-y-6"
+            >
+                <div>
+                    <label htmlFor="number" className="block text-sm mb-1">Number</label>
+                    <input
+                        id='number'
+                        type="tel"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
+                        value={number}
+                        onChange={(e) => setNumber(e.target.value)}
+                        placeholder="Enter your number"
+                        className="w-full bg-gradient-to-r to-[#0f181f] from-[#617620] text-gray-100 border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:border-[#7ba304]"
+                    />
+                </div>
+
+                <div className="flex justify-end">
+                    <button
+                        type="submit"
+                        className="bg-gradient-to-r to-[#0f181f] from-[#617620]  hover:from-[#a1c935] hover:to-[#25313a] shadow-[0_0_40px_#617620] text-white font-semibold px-6 py-2.5 rounded-md transition-all"
+                    >
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    );
+};
+
+export default UpdateNumber;

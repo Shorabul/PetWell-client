@@ -3,19 +3,26 @@ import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthContext';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
+import toast from 'react-hot-toast'
 
 
 const Singup = () => {
     const [passwordError, setPasswordError] = useState("");
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
-    const { setLoading,
+    const {
+        setLoading,
         createUser,
         setUser,
         updateUser,
-        googleAuth } = useContext(AuthContext);
+        googleAuth,
+        user
+    } = useContext(AuthContext);
 
+    if (user) {
+        navigate('/');
+    }
     const handleSignup = (e) => {
         e.preventDefault();
         const name = e.target.name.value;

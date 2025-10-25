@@ -101,14 +101,15 @@ const ServiceDetails = () => {
                     </Link>
                 </div> */}
                 <div className="flex justify-between items-center pt-5">
-                    <Link
+                    {/* <Link
                         to="/services"
                         className="text-green-700 font-medium hover:underline flex items-center gap-2"
                     >
                         ← Back to Services
-                    </Link>
+                    </Link> */}
 
                     <Link
+                        state={{ serviceName, providerName }}
                         to={`/book-service/${serviceId}`}
                         className="bg-green-700 hover:bg-green-800 text-white font-semibold px-8 py-3 rounded-lg shadow-md transition-all"
                     >

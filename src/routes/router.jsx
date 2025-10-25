@@ -13,6 +13,10 @@ import ForgotPassword from '../pages/ForgotPassword';
 import BookServiceForm from '../pages/BookServiceForm';
 import UpdateProfile from '../pages/UpdateProfile';
 import Error from '../pages/Error';
+import UpdateName from '../pages/UpdateName';
+import UpdateEmail from '../pages/UpdateEmail';
+import UpdateNumber from '../pages/UpdateNumber';
+import ProductDetails from '../pages/ProductDetails';
 const router = createBrowserRouter([
     {
         path: '/',
@@ -33,12 +37,34 @@ const router = createBrowserRouter([
             },
             {
                 path: '/profile',
-                element: <PrivateRoute><Profile></Profile></PrivateRoute>,
+                element: (<PrivateRoute><Profile></Profile></PrivateRoute>),
             },
             {
                 path: '/update-profile',
-                element: <PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>,
-            }
+                element: (<PrivateRoute><UpdateProfile></UpdateProfile></PrivateRoute>),
+            },
+            {
+                path: '/update-name',
+                element: (<PrivateRoute>
+                    <UpdateName></UpdateName>
+                </PrivateRoute>),
+            },
+            {
+                path: '/update-email',
+                element: (<PrivateRoute>
+                    <UpdateEmail></UpdateEmail>
+                </PrivateRoute>),
+            },
+            {
+                path: '/update-number',
+                element: (<PrivateRoute>
+                    <UpdateNumber></UpdateNumber>
+                </PrivateRoute>),
+            },
+            {
+                path: '/product-details/:id',
+                element: <ProductDetails></ProductDetails>
+            },
         ]
     },
     {
@@ -70,5 +96,6 @@ const router = createBrowserRouter([
         element: <PrivateRoute><BookServiceForm></BookServiceForm></PrivateRoute>,
     },
 ]);
+// console.log("Registered Routes:", router.routes);
 
 export default router;

@@ -1,0 +1,66 @@
+[
+    {
+        "productId": 101,
+        "productName": "Cozy Dog Sweater",
+        "image": "https://i.ibb.co/WpNBTrsq/81-G-k7-Ito2-L-AC-SX679.jpg",
+        "category": "Clothing",
+        "rating": 4.9,
+        "price": 25.99
+    },
+    {
+        "productId": 102,
+        "productName": "Cat Winter Jacket",
+        "image": "https://i.ibb.co/JR6TtCDw/61of-Lyry-GKL-AC-SL1000.jpg",
+        "category": "Clothing",
+        "rating": 4.8,
+        "price": 22.50
+    },
+    {
+        "productId": 103,
+        "productName": "Heated Pet Bed",
+        "image": "https://i.ibb.co/TqBkq984/71-Fncn-U-CRL-AC-SL1500.jpg",
+        "category": "Bedding",
+        "rating": 5.0,
+        "price": 59.99
+    },
+    {
+        "productId": 104,
+        "productName": "Dog Winter Boots",
+        "image": "https://i.ibb.co/VW4L2Ykp/81-Ke-U1-U-o-HL-AC-SL1500.jpg",
+        "category": "Footwear",
+        "rating": 4.85,
+        "price": 19.99
+    },
+    {
+        "productId": 105,
+        "productName": "Cat Steam Brush",
+        "image": "https://i.ibb.co/7x6JVVhR/71-Wzyn3-T3-NL-SL1500.jpg",
+        "category": "Brush",
+        "rating": 4.7,
+        "price": 12.50
+    },
+    {
+        "productId": 106,
+        "productName": "Pet Winter Collar",
+        "image": "https://i.ibb.co/gbjk4w5B/81n-OSALv-Xw-L-AC-SL1500.jpg",
+        "category": "Accessories",
+        "rating": 4.9,
+        "price": 14.99
+    },
+    {
+        "productId": 107,
+        "productName": "Chicken and Brown Rice - 5lb",
+        "image": "https://i.ibb.co/yFfRGkR0/81zco-GHe6h-L-AC-SX679.jpg",
+        "category": "Food",
+        "rating": 5.0,
+        "price": 39.99
+    },
+    {
+        "productId": 108,
+        "productName": "Dog Chew Toy",
+        "image": "https://i.ibb.co/nq72QyVG/61-Ayb-JAp-MS-AC-SL1200.jpg",
+        "category": "Toys",
+        "rating": 4.8,
+        "price": 9.99
+    }
+]

@@ -11,7 +11,7 @@ const PrivateRoute = ({ children }) => {
     // console.log(location);
     if (loading) {
         return <Loading></Loading>;
-    } else if (user && user?.email) {
+    } else if (user) {
         return children;
     } else {
         return <Navigate state={location.pathname} to="/auth/login"></Navigate>;

@@ -2,85 +2,77 @@ import React from 'react';
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
-
 const Footer = () => {
     return (
-        <footer className="bg-lime-700">
-            <div className="mx-auto w-full max-w-screen-xl">
-                <div className="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
+        <footer className="bg-gradient-to-r from-[#617620] to-[#0f181f] text-[#fcf9e2] pt-12 pb-6">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+
+                    {/* About WarmPaws */}
                     <div>
-                        <h2 className="mb-6 text-sm font-semibold text-white uppercase">WarmPaws</h2>
-                        <ul className="text-gray-400 font-medium">
-                            <li className="mb-4">
-                                <a href="#" className=" hover:underline">About</a>
-                            </li>
-                            <li className="mb-4">
-                                <a href="#" className="hover:underline">Careers</a>
-                            </li>
-                            <li className="mb-4">
-                                <a href="#" className="hover:underline">Brand Center</a>
-                            </li>
-                            <li className="mb-4">
-                                <a href="#" className="hover:underline">Blog</a>
-                            </li>
+                        <h2 className="text-lg font-semibold mb-4">About WarmPaws</h2>
+                        <ul className="space-y-2 text-sm">
+                            <li><a href="#" className="hover:text-green-400 transition">About</a></li>
+                            <li><a href="#" className="hover:text-green-400 transition">Careers</a></li>
+                            <li><a href="#" className="hover:text-green-400 transition">Brand Center</a></li>
+                            <li><a href="#" className="hover:text-green-400 transition">Blog</a></li>
                         </ul>
                     </div>
+
+                    {/* Support */}
                     <div>
-                        <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Help center</h2>
-                        <ul className="text-gray-400 font-medium">
-                            <li className="mb-4">
-                                <a href="#" className="hover:underline">Discord Server</a>
-                            </li>
-                            <li className="mb-4">
-                                <a href="https://x.com" className="hover:underline">Twitter</a>
-                            </li>
-                            <li className="mb-4">
-                                <a href="https://www.facebook.com" className="hover:underline">Facebook</a>
-                            </li>
-                            <li className="mb-4">
-                                <a href="#" className="hover:underline">Contact Us</a>
-                            </li>
+                        <h2 className="text-lg font-semibold mb-4">Pet Owner Support</h2>
+                        <ul className="space-y-2 text-sm">
+                            <li><a href="#" className="hover:text-green-400 transition">Discord Server</a></li>
+                            <li><a href="https://x.com" className="hover:text-green-400 transition">Twitter</a></li>
+                            <li><a href="https://www.facebook.com" className="hover:text-green-400 transition">Facebook</a></li>
+                            <li><a href="#" className="hover:text-green-400 transition">Contact Us</a></li>
                         </ul>
                     </div>
+
+                    {/* Legal */}
                     <div>
-                        <h2 className="mb-6 text-sm font-semibold text-white uppercase">Legal</h2>
-                        <ul className="text-gray-400 font-medium">
-                            <li className="mb-4">
-                                <a href="#" className="hover:underline">Privacy Policy</a>
-                            </li>
-                            <li className="mb-4">
-                                <a href="#" className="hover:underline">Licensing</a>
-                            </li>
-                            <li className="mb-4">
-                                <a href="#" className="hover:underline">Terms &amp; Conditions</a>
-                            </li>
+                        <h2 className="text-lg font-semibold mb-4">Legal</h2>
+                        <ul className="space-y-2 text-sm">
+                            <li><a href="#" className="hover:text-green-400 transition">Privacy Policy</a></li>
+                            <li><a href="#" className="hover:text-green-400 transition">Licensing</a></li>
+                            <li><a href="#" className="hover:text-green-400 transition">Terms & Conditions</a></li>
                         </ul>
                     </div>
+
+                    {/* Get the App */}
                     <div>
-                        <h2 className="mb-6 text-sm font-semibold text-white uppercase">Download</h2>
-                        <ul className="text-gray-400 font-medium">
-                            <li className="mb-4">
-                                <a href="https://www.apple.com/app-store" className="hover:underline">iOS</a>
-                            </li>
-                            <li className="mb-4">
-                                <a href="https://play.google.com" className="hover:underline">Android</a>
-                            </li>
+                        <h2 className="text-lg font-semibold mb-4">Get the App</h2>
+                        <ul className="space-y-2 text-sm">
+                            <li><a href="https://www.apple.com/app-store" className="hover:text-green-400 transition">iOS</a></li>
+                            <li><a href="https://play.google.com" className="hover:text-green-400 transition">Android</a></li>
                         </ul>
                     </div>
                 </div>
-                <div className="px-4 py-6 md:flex md:items-center md:justify-between">
-                    <span className="text-sm text-gray-300 sm:text-center">© 2025 <a href="https://flowbite.com/">WarmPaws™</a>. All Rights Reserved.
-                    </span>
-                    <div className="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
-                        <a href="https://www.facebook.com" className="text-gray-400 dark:hover:text-white">
-                            <FaFacebookF />
-                        </a>
-                        <a href="https://x.com" className="text-gray-400 dark:hover:text-white">
-                            <FaXTwitter />
-                        </a>
-                        <a href="https://www.instagram.com" className="text-gray-400 dark:hover:text-white">
-                            <FaInstagram />
-                        </a>
+
+                {/* Newsletter */}
+                <div className="bg-[#101921]/10 rounded-lg p-6 flex flex-col sm:flex-row items-center justify-between mb-10 gap-4">
+                    <p className="font-semibold text-sm sm:text-base">Get Cozy Updates:</p>
+                    <div className="flex w-full sm:w-auto">
+                        <input
+                            type="email"
+                            placeholder="Enter your email"
+                            className="px-4 py-2 rounded-l-md text-white/50 focus:outline-none w-full sm:w-64 bg-gradient-to-r from-[#617620] to-[#0f181f]"
+                        />
+                        <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-r-md font-semibold transition">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+
+                {/* Bottom Section */}
+                <div className="flex flex-col md:flex-row items-center justify-between border-t border-green-600 pt-6">
+                    <p className="text-sm mb-4 md:mb-0">&copy; 2025 WarmPaws™. All Rights Reserved.</p>
+                    <div className="flex space-x-5 text-xl">
+                        <a href="https://www.facebook.com" className="hover:text-green-400 transition"><FaFacebookF /></a>
+                        <a href="https://x.com" className="hover:text-green-400 transition"><FaXTwitter /></a>
+                        <a href="https://www.instagram.com" className="hover:text-green-400 transition"><FaInstagram /></a>
                     </div>
                 </div>
             </div>
