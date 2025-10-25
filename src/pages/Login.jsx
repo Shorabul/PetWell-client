@@ -105,7 +105,7 @@ const Login = () => {
                             </span> */}
                             <span
                                 onClick={() => setShow(!show)}
-                                className="text-black absolute top-10 right-4 cursor-pointer transition-all duration-200 ease-in-out"
+                                className="text-black absolute top-1/2 translate-y-1/2 right-4 cursor-pointer transition-all duration-200 ease-in-out"
                             >
                                 {show ? (
                                     <FaEye className="transform scale-100 opacity-100 transition-all duration-200 ease-in-out" />

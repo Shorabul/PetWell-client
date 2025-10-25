@@ -48,36 +48,122 @@ const Singup = () => {
         } else {
             setPasswordError("");
         }
-        createUser(email, password).then((userCredential) => {
-            const user = userCredential.user;
-            updateUser({ displayName: name, photoURL: photo })
-                .then(() => {
-                    setLoading(false);
-                    setUser(user);
-                    navigate('/');
-                    toast.success('Signup successful');
-                }).catch((error) => {
-                    console.log(error);
-                    toast.error(error.message);
-                })
-        }).catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
-        })
+        // createUser(email, password).then((userCredential) => {
+        //     const user = userCredential.user;
+        //     updateUser({ displayName: name, photoURL: photo })
+        //         .then(() => {
+        //             setLoading(false);
+        //             setUser(user);
+        //             navigate('/');
+        //             toast.success('Signup successful');
+        //         }).catch((error) => {
+        //             console.log(error);
+        //             toast.error(error.message);
+        //         })
+        // }).catch((error) => {
+        //     const errorCode = error.code;
+        //     const errorMessage = error.message;
+        //     console.log(errorCode, errorMessage);
+        // })
+        createUser(email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                updateUser({ displayName: name, photoURL: photo })
+                    .then(() => {
+                        setLoading(false);
+                        setUser(user);
+                        navigate('/');
+                        toast.success('Signup successful');
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        toast.error(error.message || 'Failed to update user profile.');
+                    });
+            })
+            .catch((error) => {
+                setLoading(false);
+                console.error(error.code, error.message);
+
+                const errorMessages = {
+                    'auth/email-already-in-use':
+                        'This email is already registered. Try logging in instead.',
+                    'auth/invalid-email':
+                        'The email address is not valid. Please check and try again.',
+                    'auth/operation-not-allowed':
+                        'Email/password accounts are not enabled. Contact support.',
+                    'auth/weak-password':
+                        'Password is too weak. Use at least 6 characters.',
+                    'auth/network-request-failed':
+                        'Network error. Please check your connection and try again.',
+                    'auth/internal-error':
+                        'An internal error occurred. Please try again later.',
+                };
+
+                const message =
+                    errorMessages[error.code] || error.message || 'Signup failed. Please try again.';
+                toast.error(message);
+            });
+
     }
+    // const handleAuthGoogle = () => {
+    //     googleAuth().then((result) => {
+    //         setLoading(false);
+    //         const user = result.user;
+    //         setUser(user);
+    //         navigate(`${location.state ? location.state : '/'}`);
+    //         toast.success("Signup successful");
+    //     }).catch((error) => {
+    //         console.log(error)
+    //         toast.error(error.message);
+    //     });
+    // }
     const handleAuthGoogle = () => {
-        googleAuth().then((result) => {
-            setLoading(false);
-            const user = result.user;
-            setUser(user);
-            navigate(`${location.state ? location.state : '/'}`);
-            toast.success("Signup successful");
-        }).catch((error) => {
-            console.log(error)
-            toast.error(error.message);
-        });
-    }
+        setLoading(true);
+        googleAuth()
+            .then((result) => {
+                setLoading(false);
+                const user = result.user;
+                setUser(user);
+                navigate(location.state ? location.state : '/');
+                toast.success("Signup successful");
+            })
+            .catch((error) => {
+                setLoading(false);
+                console.error(error);
+
+                const errorMessages = {
+                    'auth/account-exists-with-different-credential':
+                        'An account already exists with the same email but different sign-in credentials.',
+                    'auth/auth-domain-config-required':
+                        'Authentication domain configuration is missing.',
+                    'auth/cancelled-popup-request':
+                        'Popup request was cancelled. Please try again.',
+                    'auth/operation-not-allowed':
+                        'Google sign-in is not enabled. Please contact support.',
+                    'auth/popup-blocked':
+                        'Popup was blocked by the browser. Please allow popups and try again.',
+                    'auth/popup-closed-by-user':
+                        'You closed the popup before completing the sign-in.',
+                    'auth/unauthorized-domain':
+                        'This domain is not authorized for OAuth operations.',
+                    'auth/user-disabled':
+                        'This user account has been disabled.',
+                    'auth/user-not-found':
+                        'No user found with these credentials.',
+                    'auth/wrong-password':
+                        'Incorrect password. Please try again.',
+                    'auth/network-request-failed':
+                        'Network error. Please check your connection and try again.',
+                    'auth/internal-error':
+                        'An internal error occurred. Please try again later.',
+                };
+
+                const message =
+                    errorMessages[error.code] || error.message || 'An unknown error occurred.';
+                toast.error(message);
+            });
+    };
+
     return (
         <div className="min-h-screen w-full grid grid-cols-1 md:grid-cols-12">
             {/* name and logo */}
@@ -119,7 +205,7 @@ const Singup = () => {
                             </span> */}
                             <span
                                 onClick={() => setShow(!show)}
-                                className="text-black absolute top-10 right-4 cursor-pointer transition-all duration-200 ease-in-out"
+                                className="text-black absolute top-1/2 translate-y-1/2 right-4 cursor-pointer transition-all duration-200 ease-in-out"
                             >
                                 {show ? (
                                     <FaEye className="transform scale-100 opacity-100 transition-all duration-200 ease-in-out" />

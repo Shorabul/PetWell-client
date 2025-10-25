@@ -5,6 +5,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthContext";
+import { Link } from 'react-router';
 
 const HeroSlider = () => {
     const { services } = useContext(AuthContext);
@@ -41,9 +42,9 @@ const HeroSlider = () => {
                                 <p className="text-sm md:text-lg text-gray-200 max-w-2xl">
                                     {service.description}
                                 </p>
-                                <button className="mt-4 bg-[#a1c935] hover:bg-[#c1e340] text-black font-semibold px-5 py-2 rounded-full transition-all duration-300 shadow-md">
+                                <Link to='/services' className="mt-4 bg-[#a1c935] hover:bg-[#c1e340] text-black font-semibold px-5 py-2 rounded-full transition-all duration-300 shadow-md">
                                     Explore Service
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </SwiperSlide>
