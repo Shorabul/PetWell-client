@@ -33,9 +33,9 @@ const ForgotPassword = () => {
         if (success) {
             const timer = setTimeout(() => {
                 window.open("https://mail.google.com/", "_blank");
-            }, 1000); // 1000ms = 1 second
+            }, 1000);
 
-            return () => clearTimeout(timer); // cleanup if component unmounts
+            return () => clearTimeout(timer);
         }
     }, [success]);
 

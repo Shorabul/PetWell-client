@@ -61,7 +61,7 @@ const ServiceDetails = () => {
             <div className="w-full max-w-5xl mx-auto py-10 px-5 space-y-8">
                 {/* Rating + Price */}
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-200 pb-5">
-                    <div className="flex items-center text-yellow-500 text-lg">
+                    <div className="flex items-center text-yellow-400 text-lg">
                         {Array.from({ length: Math.floor(rating) }).map((_, i) => (
                             <FaStar key={i} />
                         ))}

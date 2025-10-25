@@ -1,10 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { HiOutlineMenu } from "react-icons/hi";
+import { HiOutlineMenu, HiHome } from "react-icons/hi";
 import { RxCross1 } from "react-icons/rx";
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../provider/AuthContext';
 // import { toast } from 'react-toastify';
 import toast from 'react-hot-toast'
+import { MdMedicalServices } from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
+
 const Navbar = () => {
 
     const [toggle, setToggle] = useState(false);
@@ -34,9 +37,9 @@ const Navbar = () => {
         setProfileToggle(!profileToggle);
     }
     const links = <>
-        <NavLink to='/' className="">Home</NavLink>
-        <NavLink to='/services' className="">Services</NavLink>
-        {user && <NavLink to='/profile' className="">Profile</NavLink>}
+        <NavLink to='/' className="flex justify-center items-center gap-1"><HiHome size={20} />Home</NavLink>
+        <NavLink to='/services' className="flex justify-center items-center gap-1"><MdMedicalServices size={20} />Services</NavLink>
+        {user && <NavLink to='/profile' className="flex justify-center items-center gap-1"><FaUserCircle size={20} />Profile</NavLink>}
     </>
     return (
         <nav className="bg-[#fcf9e2] text-[#101921] w-11/12 mx-auto my-6 rounded-[20px]">
@@ -60,17 +63,32 @@ const Navbar = () => {
                     {user ?
                         <>
                             <div className="relative">
-                                <button
+                                {/* <button
                                     onClick={handleProfileToggle}
                                     type="button"
-                                    className="flex items-center text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-lime-400"
+                                    className={`flex items-center text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 cursor-pointer focus:ring-lime-400 hover:${<p>{user.displayName}</p>}`}
                                 >
                                     <img
                                         className="w-8 h-8 rounded-full"
                                         src={user.photoURL}
                                         alt="User photo"
                                     />
+                                </button> */}
+                                <button
+                                    onClick={handleProfileToggle}
+                                    type="button"
+                                    className="relative group flex items-center text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 cursor-pointer focus:ring-lime-400"
+                                >
+                                    <img
+                                        className="w-8 h-8 rounded-full"
+                                        src={user.photoURL}
+                                        alt="User photo"
+                                    />
+                                    <span className="absolute left-1/2 -translate-x-1/2 mt-10 px-2 py-1 text-xs text-white bg-black rounded opacity-0 group-hover:opacity-100 transition">
+                                        {user.displayName}
+                                    </span>
                                 </button>
+
 
                                 {profileToggle && (
                                     <div className="absolute right-0 top-13 w-48 bg-gradient-to-r from-[#0f181f] to-[#617620] text-white rounded-b-md shadow-lg z-50 divide-y divide-white/30">
@@ -140,7 +158,7 @@ const Navbar = () => {
                         {/* Dropdown menu */}
                         {toggle && (
                             <div className="absolute top-12 right-0 w-48 bg-gradient-to-r from-[#0f181f] to-[#617620] rounded-b-lg shadow-lg z-50">
-                                <div className="flex flex-col gap-4 p-4 text-sm font-medium text-white">
+                                <div className="flex flex-col justify-start items-start gap-4 p-4 text-sm font-medium text-white">
                                     {links}
                                 </div>
                             </div>

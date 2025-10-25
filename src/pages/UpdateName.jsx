@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useContext } from "react";
-import { useLocation, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from "../provider/AuthContext";
 // import { toast } from 'react-toastify';
 import toast from 'react-hot-toast'
+import { FaArrowLeft, FaUserCircle } from 'react-icons/fa';
 
 const UpdateName = () => {
     const location = useLocation();
@@ -14,11 +15,14 @@ const UpdateName = () => {
     const { user, updateUser, setLoading } = useContext(AuthContext);
     const photoURL = user.photoURL;
     const navigate = useNavigate();
-
+    const fullName = `${firstName} ${lastName}`;
     const handleSubmit = (e) => {
-
-        const name = `${first} ${last}`;
         e.preventDefault();
+        const name = `${first} ${last}`;
+        if (fullName === name) {
+            toast.error('Please enter new name!');
+            return;
+        }
         updateUser({ displayName: name, photoURL: photoURL })
             .then(() => {
                 setLoading(false);
@@ -37,6 +41,15 @@ const UpdateName = () => {
                 onSubmit={handleSubmit}
                 className="bg-gradient-to-r from-[#0f181f] to-[#617620] p-8 rounded-2xl w-full max-w-md shadow-xl space-y-6"
             >
+                {/* Back Button */}
+                <div className="flex items-center justify-between">
+                    <Link
+                        to="/profile"
+                        className="flex items-center gap-2 text-white/90 focus:text-[#a1c935] hover:text-[#a1c935] font-medium transition-colors"
+                    >
+                        <FaArrowLeft /> Back to Profile
+                    </Link>
+                </div>
                 <div>
                     <h2 className="text-lg font-semibold mb-2">Title</h2>
                     <div className="flex items-center gap-6">

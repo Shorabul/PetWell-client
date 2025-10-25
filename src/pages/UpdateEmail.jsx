@@ -4,7 +4,9 @@ import { useContext } from 'react';
 import { AuthContext } from '../provider/AuthContext';
 // import { toast } from 'react-toastify';
 import toast from 'react-hot-toast'
-import { useLocation, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
+import { FaArrowLeft, FaUserCircle } from 'react-icons/fa';
+
 const UpdateEmail = () => {
     const navigate = useNavigate();
 
@@ -38,12 +40,21 @@ const UpdateEmail = () => {
                 onSubmit={handleSubmit}
                 className="bg-gradient-to-r from-[#0f181f] to-[#617620] p-8 rounded-2xl w-full max-w-md shadow-xl space-y-6"
             >
+                {/* Back Button */}
+                <div className="flex items-center justify-between">
+                    <Link
+                        to="/profile"
+                        className="flex items-center gap-2 text-white/90 focus:text-[#a1c935] hover:text-[#a1c935] font-medium transition-colors"
+                    >
+                        <FaArrowLeft /> Back to Profile
+                    </Link>
+                </div>
                 <div>
                     <h2 className="text-lg font-semibold mb-2">This e-mail address is also your login name and the contact address for WarmPaws</h2>
                 </div>
 
                 <div>
-                    <label className="block text-sm mb-1">Last name</label>
+                    <label className="block text-sm mb-1">Email</label>
                     <input
                         type="email"
                         value={newEmail}

@@ -88,7 +88,7 @@ const Login = () => {
             {/* Login Form Section */}
             <div className="md:col-span-7 flex items-center justify-center text-white">
                 <div className="w-full max-w-lg p-8 rounded-lg shadow-[0px_0px_20px_#617620]">
-                    <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold mb-6 text-center">Login</h2>
+                    <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold mb-6 text-center">LogIn</h2>
                     <form onSubmit={handleLogin} className="space-y-4 text-xs sm:text-sm md:text-base">
                         {/* email */}
                         <div>
@@ -100,9 +100,20 @@ const Login = () => {
                             <label className="font-semibold block mb-1" htmlFor="password">Password</label>
                             <input type={show ? 'text' : 'password'} name="password" placeholder="Password" className="bg-white text-[#0f181f] w-full p-2 rounded" />
                             {/* password show and hide */}
-                            <span onClick={() => setShow(!show)} className="text-black absolute top-8 right-4 cursor-pointer">
-                                {show ? <FaEye /> : <FaEyeSlash />}
+                            {/* <span onClick={() => setShow(!show)} className="text-black absolute top-10 right-4 cursor-pointer">
+                                {show ? <FaEye className='duration-200' /> : <FaEyeSlash className='duration-200' />}
+                            </span> */}
+                            <span
+                                onClick={() => setShow(!show)}
+                                className="text-black absolute top-10 right-4 cursor-pointer transition-all duration-200 ease-in-out"
+                            >
+                                {show ? (
+                                    <FaEye className="transform scale-100 opacity-100 transition-all duration-200 ease-in-out" />
+                                ) : (
+                                    <FaEyeSlash className="transform scale-90 opacity-80 transition-all duration-200 ease-in-out" />
+                                )}
                             </span>
+
                         </div>
                         {/* checkbox and forgot password */}
                         <div className="flex justify-between items-center">

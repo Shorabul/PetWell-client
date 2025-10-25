@@ -11,14 +11,14 @@ const Services = () => {
     const [showLoading, setShowLoading] = useState(true);
     useEffect(() => {
         const timer = setTimeout(() => {
-            setShowLoading(false); // hide loader after 1 sec
-        }, 1000); // 1000 ms = 1 second
+            setShowLoading(false);
+        }, 1000);
 
-        return () => clearTimeout(timer); // cleanup
+        return () => clearTimeout(timer);
     }, []);
 
     if (showLoading) {
-        return <Loading className='h-[30vh]' />; // show loader while true
+        return <Loading className='h-[30vh]' />;
     }
     return (
         <div className='w-full text-center space-y-3 sm:space-y-5 md:space-y-8 lg:space-y-10'>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import toast from 'react-hot-toast'
+import { FaArrowLeft, FaUserCircle } from 'react-icons/fa';
+import { Link } from 'react-router';
 
 const UpdateNumber = () => {
     const [number, setNumber] = useState(null);
@@ -18,6 +20,16 @@ const UpdateNumber = () => {
                 onSubmit={handleSubmit}
                 className="bg-gradient-to-r from-[#0f181f] to-[#617620] p-8 rounded-2xl w-full max-w-md shadow-xl space-y-6"
             >
+                {/* Back Button */}
+                <div className="flex items-center justify-between">
+                    <Link
+                        to="/profile"
+                        className="flex items-center gap-2 text-white/90 focus:text-[#a1c935] hover:text-[#a1c935] font-medium transition-colors"
+                    >
+                        <FaArrowLeft /> Back to Profile
+                    </Link>
+                </div>
+
                 <div>
                     <label htmlFor="number" className="block text-sm mb-1">Number</label>
                     <input

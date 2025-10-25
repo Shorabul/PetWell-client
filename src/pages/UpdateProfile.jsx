@@ -28,13 +28,13 @@ const UpdateProfile = () => {
 
     return (
         <div className="min-h-screen flex justify-center items-center p-6">
-            <div className="bg-[#0f181f] w-full max-w-lg rounded-3xl shadow-[0_0_40px_rgba(97,118,32,0.25)] p-8 space-y-6">
+            <div className="bg-[#1c1c1c] w-full max-w-lg rounded-3xl shadow-[0_0_40px_rgba(97,118,32,0.25)] p-8 space-y-6">
 
                 {/* Back Button */}
                 <div className="flex items-center justify-between">
                     <Link
                         to="/profile"
-                        className="flex items-center gap-2 text-white/90 hover:text-[#a1c935] font-medium transition-colors"
+                        className="flex items-center gap-2 text-white/90 focus:text-[#a1c935] hover:text-[#a1c935] font-medium transition-colors"
                     >
                         <FaArrowLeft /> Back to Profile
                     </Link>
@@ -63,7 +63,7 @@ const UpdateProfile = () => {
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             placeholder="Enter your name"
-                            className="w-full px-4 py-2 border border-[#2c2c2c] bg-[#1c1c1c] text-white/90 rounded-lg focus:ring-2 focus:ring-[#a1c935] focus:outline-none transition-all duration-300"
+                            className="w-full px-4 py-2 border border-[#2c2c2c] bg-[#1c1c1c] text-white/90 rounded-lg focus:ring-2 focus:ring-[#a1c935] focus:outline-none transition-all duration-300 shadow-[0_0_10px_#617620]"
                             required
                         />
                     </div>
@@ -78,7 +78,7 @@ const UpdateProfile = () => {
                             value={photoURL}
                             onChange={(e) => setPhotoURL(e.target.value)}
                             placeholder="https://example.com/your-photo.jpg"
-                            className="w-full px-4 py-2 border border-[#2c2c2c] bg-[#1c1c1c] text-white/90 rounded-lg focus:ring-2 focus:ring-[#a1c935] focus:outline-none transition-all duration-300"
+                            className="w-full px-4 py-2 border border-[#2c2c2c] bg-[#1c1c1c] text-white/90 rounded-lg focus:ring-2 focus:ring-[#a1c935] focus:outline-none transition-all duration-300 shadow-[0_0_10px_#617620]"
                         />
                     </div>
 

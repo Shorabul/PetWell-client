@@ -12,7 +12,7 @@ const Profile = () => {
     const { firstName, lastName } = splitName(user.displayName);
     return (
         <>
-            <div className='w-10/12 mx-auto space-y-20'>
+            <div className='w-10/12 mx-auto space-y-10 md:space-y-20'>
                 <h2 className='text-white/80 font-bold text-left md:text-center text-lg sm:text-xl md:text-2xl lg:text-3xl'>Personal information</h2>
                 <div className='space-y-1 bg-[#1c1c1c] p-5 rounded-2xl text-white/50'>
                     <div className='relative mb-5 flex justify-between'>
