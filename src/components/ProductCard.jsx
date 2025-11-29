@@ -16,8 +16,8 @@ const ProductCard = ({ product, direction = "right" }) => {
         ${isVisible
                     ? "opacity-100 translate-x-0"
                     : direction === "right"
-                        ? "opacity-0 translate-x-20"
-                        : "opacity-0 -translate-x-20"}
+                        ? "opacity-0 translate-x-5 md:translate-x-10"
+                        : "opacity-0 -translate-x-5 md:-translate-x-10"}
       `}
         >
             {/* Product Image */}
@@ -26,7 +26,7 @@ const ProductCard = ({ product, direction = "right" }) => {
                     src={image}
                     alt={productName}
                     loading="lazy"
-                    className="w-full h-[200px] sm:h-[220px] md:h-[250px] object-cover rounded-t-2xl transform transition-transform duration-300 hover:scale-105"
+                    className="w-full h-[200px] sm:h-[220px] md:h-[250px] object-cover rounded-t-2xl transform transition-transform duration-300 hover:scale-102"
                 />
             </div>
 

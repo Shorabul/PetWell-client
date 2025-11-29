@@ -8,7 +8,7 @@ const PopularServices = () => {
 
     return (
         <div className="w-full text-center space-y-8 px-4 md:px-8">
-            <h2 className="text-white/90 font-extrabold text-3xl sm:text-4xl md:text-5xl animate__animated animate__fadeInDown">
+            <h2 className="text-white/90 font-extrabold text-2xl sm:text-3xl md:text-5xl animate__animated animate__fadeInDown">
                 Popular Winter Care Services
             </h2>
 

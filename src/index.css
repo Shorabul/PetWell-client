@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 button {
-    @apply active:scale-102 transition-all ease-in-out;
+    @apply active:scale-102 transition-all ease-in-out cursor-pointer;
 }
 
 nav ul a {

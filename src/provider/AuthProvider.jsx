@@ -16,6 +16,7 @@ import { useState } from 'react';
 
 const auth = getAuth(app);
 const providerGoogle = new GoogleAuthProvider();
+providerGoogle.addScope('email');
 const AuthProvider = ({ children }) => {
     const [services, setServices] = useState([]);
     const [tips, setTips] = useState([]);

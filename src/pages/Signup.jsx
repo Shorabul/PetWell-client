@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthContext';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -20,9 +20,12 @@ const Singup = () => {
         user
     } = useContext(AuthContext);
 
-    if (user) {
-        navigate('/');
-    }
+    useEffect(() => {
+        if (user) {
+            navigate('/');
+        }
+    }, [user, navigate]);
+
     const handleSignup = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
@@ -104,7 +107,7 @@ const Singup = () => {
                 toast.error(message);
             });
 
-    }
+    };
     // const handleAuthGoogle = () => {
     //     googleAuth().then((result) => {
     //         setLoading(false);
@@ -123,6 +126,16 @@ const Singup = () => {
             .then((result) => {
                 setLoading(false);
                 const user = result.user;
+                if (!user.email) {
+                    if (user.providerData) {
+                        const googleProvider = user
+                            .providerData.find(p => p.providerId === 'google.com');
+                        if (googleProvider && googleProvider.email) {
+                            user.email = googleProvider.email;
+                            // setUser(loggedInUser)
+                        }
+                    }
+                }
                 setUser(user);
                 navigate(location.state ? location.state : '/');
                 toast.success("Signup successful");
@@ -220,6 +233,7 @@ const Singup = () => {
                             <p className='text-red-500'>
                                 *{passwordError}</p>
                         }
+                        
                         {/* signup button */}
                         <button type="submit" className="bg-green-600 hover:bg-green-700 text-white cursor-pointer w-full py-2 rounded font-medium">Sign up</button>
                     </form>

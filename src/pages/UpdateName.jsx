@@ -36,7 +36,7 @@ const UpdateName = () => {
     };
 
     return (
-        <div className="min-h-screen flex justify-center items-center text-gray-200">
+        <div className="flex justify-center items-center text-gray-200 w-11/12 mx-auto text-sm sm:text-base md:text-lg lg:text-xl">
             <form
                 onSubmit={handleSubmit}
                 className="bg-gradient-to-r from-[#0f181f] to-[#617620] p-8 rounded-2xl w-full max-w-md shadow-xl space-y-6"
@@ -60,7 +60,7 @@ const UpdateName = () => {
                                 value="Ms."
                                 checked={title === "Ms."}
                                 onChange={(e) => setTitle(e.target.value)}
-                                className="accent-[#7ba304] w-5 h-5"
+                                className="accent-[#7ba304] w-5 h-5 cursor-pointer"
                             />
                             <span>Ms.</span>
                         </label>
@@ -72,7 +72,7 @@ const UpdateName = () => {
                                 value="Mr."
                                 checked={title === "Mr."}
                                 onChange={(e) => setTitle(e.target.value)}
-                                className="accent-[#7ba304] w-5 h-5"
+                                className="accent-[#7ba304] w-5 h-5 cursor-pointer"
                             />
                             <span>Mr.</span>
                         </label>
@@ -104,7 +104,7 @@ const UpdateName = () => {
                 <div className="flex justify-end">
                     <button
                         type="submit"
-                        className="bg-gradient-to-r to-[#0f181f] from-[#617620]  hover:from-[#a1c935] hover:to-[#25313a] shadow-[0_0_40px_#617620] text-white font-semibold px-6 py-2.5 rounded-md transition-all"
+                        className="bg-gradient-to-r to-[#0f181f] from-[#617620]  hover:from-[#a1c935] hover:to-[#25313a] shadow-[0_0_40px_#617620] text-white font-semibold px-6 py-2.5 rounded-md transition-all "
                     >
                         Save
                     </button>

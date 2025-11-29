@@ -35,13 +35,13 @@ const UpdateEmail = () => {
             });
     }
     return (
-        <div className="min-h-screen flex justify-center items-center text-gray-200">
+        <div className="w-11/12 mx-auto flex justify-center items-center text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl">
             <form
                 onSubmit={handleSubmit}
                 className="bg-gradient-to-r from-[#0f181f] to-[#617620] p-8 rounded-2xl w-full max-w-md shadow-xl space-y-6"
             >
                 {/* Back Button */}
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between ">
                     <Link
                         to="/profile"
                         className="flex items-center gap-2 text-white/90 focus:text-[#a1c935] hover:text-[#a1c935] font-medium transition-colors"
@@ -50,7 +50,7 @@ const UpdateEmail = () => {
                     </Link>
                 </div>
                 <div>
-                    <h2 className="text-lg font-semibold mb-2">This e-mail address is also your login name and the contact address for WarmPaws</h2>
+                    <h2 className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold mb-2">This e-mail address is also your login name and the contact address for WarmPaws</h2>
                 </div>
 
                 <div>

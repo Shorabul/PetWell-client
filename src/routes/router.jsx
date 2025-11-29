@@ -70,6 +70,7 @@ const router = createBrowserRouter([
     {
         path: '/auth',
         element: <AuthLayout></AuthLayout>,
+        errorElement: <Error></Error>,
         children: [
             {
                 path: '/auth/login',
@@ -87,14 +88,19 @@ const router = createBrowserRouter([
     },
     {
         path: '/service-details/:id',
+        errorElement: <Error></Error>,
         element: (<PrivateRoute>
             <ServiceDetails></ServiceDetails>
         </PrivateRoute>),
     },
     {
         path: '/book-service/:id',
+        errorElement: <Error></Error>,
         element: <PrivateRoute><BookServiceForm></BookServiceForm></PrivateRoute>,
-    },
+    }, {
+        path: '/error',
+        element: <Error></Error>,
+    }
 ]);
 // console.log("Registered Routes:", router.routes);
 

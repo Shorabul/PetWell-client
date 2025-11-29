@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthContext';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -20,9 +20,13 @@ const Login = () => {
         googleAuth,
         user
     } = useContext(AuthContext);
-    if (user) {
-        navigate('/');
-    }
+
+    useEffect(() => {
+        if (user) {
+            navigate('/');
+        }
+    }, [user, navigate]);
+
     const handleLogin = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -64,6 +68,16 @@ const Login = () => {
             .then((result) => {
                 setLoading(false);
                 const user = result.user;
+                if (!user.email) {
+                    if (user.providerData) {
+                        const googleProvider = user
+                            .providerData.find(p => p.providerId === 'google.com');
+                        if (googleProvider && googleProvider.email) {
+                            user.email = googleProvider.email;
+                            // setUser(loggedInUser)
+                        }
+                    }
+                }
                 setUser(user);
                 navigate(`${location.state ? location.state : '/'}`);
                 // toast.success("Signin successful");
@@ -74,6 +88,9 @@ const Login = () => {
                 toast.error(error.message);
             });
     }
+    // useEffect(() => {
+    //     console.log("API Key:", import.meta.env.VITE_apiKey);
+    // }, []);
     return (
         <div className="min-h-screen w-full grid grid-cols-1 md:grid-cols-12">
             {/* name and logo */}

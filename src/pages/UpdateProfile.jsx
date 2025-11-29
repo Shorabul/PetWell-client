@@ -27,7 +27,7 @@ const UpdateProfile = () => {
     };
 
     return (
-        <div className="min-h-screen flex justify-center items-center p-6">
+        <div className="flex justify-center items-center p-6 text-sm sm:text-base md:text-lg lg:text-xl">
             <div className="bg-[#1c1c1c] w-full max-w-lg rounded-3xl shadow-[0_0_40px_rgba(97,118,32,0.25)] p-8 space-y-6">
 
                 {/* Back Button */}
@@ -43,7 +43,7 @@ const UpdateProfile = () => {
                 {/* Header */}
                 <div className="text-center space-y-3">
                     <FaUserCircle className="text-5xl text-[#a1c935] mx-auto" />
-                    <h2 className="text-2xl font-semibold text-white/90">
+                    <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-white/90">
                         Update Your Profile
                     </h2>
                     <p className="text-gray-400 text-sm">
@@ -55,7 +55,7 @@ const UpdateProfile = () => {
                 <form onSubmit={handleSubmit} className="space-y-5">
                     {/* Name */}
                     <div>
-                        <label className="block text-sm font-medium text-white/90 mb-1">
+                        <label className="block text-xs sm:text-sm md:text-base font-medium text-white/90 mb-1">
                             Name
                         </label>
                         <input
@@ -70,7 +70,7 @@ const UpdateProfile = () => {
 
                     {/* Photo URL */}
                     <div>
-                        <label className="block text-sm font-medium text-white/90 mb-1">
+                        <label className="block text-xs sm:text-sm md:text-base font-medium text-white/90 mb-1">
                             Profile Image URL
                         </label>
                         <input

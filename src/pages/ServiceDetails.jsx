@@ -4,14 +4,28 @@ import { AuthContext } from '../provider/AuthContext';
 import { FaStar, FaEnvelope, FaStore, FaArrowLeft } from "react-icons/fa";
 const ServiceDetails = () => {
     const { id } = useParams();
+    console.log(id);
     const { services } = useContext(AuthContext);
     const [service, setService] = useState({});
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fundedService = services.find(singleServices => singleServices.serviceId === parseInt(id));
-        setService(fundedService);
-    }, [id, services]);
+        const numId = Number(id);
+        if (!/^\d+$/.test(id)) {
+            navigate("/error");
+            return;
+        }
+
+        // const fundedService = services.find(s => s.serviceId === Number(id));
+        const fundedService = services.find(s => s.serviceId === numId);
+        // setService(fundedService);
+        if (!fundedService) {
+            navigate("/error");
+        } else {
+            setService(fundedService);
+        }
+
+    }, [id, services, navigate]);
     const {
         serviceId,
         serviceName,
@@ -34,7 +48,7 @@ const ServiceDetails = () => {
                     alt={serviceName}
                     className="w-full h-[60vh] object-cover brightness-[0.85]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#f8faf5] via-transparent to-transparent"></div>
+                <div className="absolute inset-0 via-transparent to-transparent"></div>
 
                 {/* Back Button */}
                 <div className="absolute top-5 left-5">
@@ -47,7 +61,7 @@ const ServiceDetails = () => {
                 </div>
 
                 {/* Title Overlay */}
-                <div className="absolute bottom-10 left-8">
+                <div className="absolute bottom-0 left-8 pb-5">
                     <span className="bg-green-700 text-white text-xs px-3 py-1 rounded-full uppercase tracking-wide">
                         {category}
                     </span>

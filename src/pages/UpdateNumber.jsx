@@ -15,7 +15,7 @@ const UpdateNumber = () => {
 
     }
     return (
-        <div className="min-h-screen flex justify-center items-center text-gray-200">
+        <div className="w-11/12 mx-auto flex justify-center items-center text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl">
             <form
                 onSubmit={handleSubmit}
                 className="bg-gradient-to-r from-[#0f181f] to-[#617620] p-8 rounded-2xl w-full max-w-md shadow-xl space-y-6"

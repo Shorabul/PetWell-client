@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams, Link, } from "react-router";
+import { useParams, Link, useNavigate, } from "react-router";
 import { FaStar, FaArrowLeft } from "react-icons/fa6";
 import { AuthContext } from "../provider/AuthContext";
 import toast from 'react-hot-toast';
@@ -8,17 +8,31 @@ const ProductDetails = () => {
     const { id } = useParams();
     const { products } = useContext(AuthContext);
     const [product, setProduct] = useState({});
+    const navigate = useNavigate();
+
     useEffect(() => {
-        const foundProduct = products.find((p) => p.productId === parseInt(id));
-        setProduct(foundProduct);
+        const numId = Number(id);
+        if (!/^\d+$/.test(id)) {
+            navigate("/error");
+            return;
+        }
+        const foundProduct = products.find((p) => p.productId === numId);
+        // setProduct(foundProduct);
+        if (!foundProduct) {
+            console.log("erro");
+            navigate("/error");
+        } else {
+            setProduct(foundProduct);
+        }
     }, [id, products]);
-    if (!product) {
-        return (
-            <div className="min-h-screen flex justify-center items-center bg-[#0f181f] text-white">
-                <p>Product not found.</p>
-            </div>
-        );
-    }
+    // if (!product) {
+    //     return (
+    //         <div className="min-h-screen flex justify-center items-center bg-[#0f181f] text-white">
+    //             <p>Product not found.</p>
+    //         </div>
+    //     );
+    // }
+
     const notify = () => {
         toast.success(`${product.productName} added to cart! 🛒`, {
             position: "bottom-right",
@@ -32,7 +46,7 @@ const ProductDetails = () => {
     }
 
     return (
-        <div className="min-h-screen bg-[#0f181f] text-white/90 flex justify-center items-center p-6">
+        <div className="bg-[#0f181f] text-white/90 flex justify-center items-center p-6">
             <div className="bg-[#0f181f] border border-[#2c2c2c] rounded-3xl shadow-[0_0_40px_rgba(97,118,32,0.25)] w-full max-w-4xl overflow-hidden">
                 {/* Header */}
                 <div className="p-6 flex items-center justify-between">

@@ -32,7 +32,7 @@ const BookServiceForm = () => {
     };
 
     return (
-        <div className="bg-[#f8faf5] rounded-lg w-screen h-screen flex flex-col justify-center items-center">
+        <div className="bg-[#f8faf5] rounded-lg w-screen h-screen flex flex-col justify-center items-center text-sm sm:text-base md:text-lg lg:text-xl">
             {/* Back Button */}
             <div className="absolute top-5 left-5">
                 <button
@@ -42,8 +42,8 @@ const BookServiceForm = () => {
                     <FaArrowLeft className="" /> Back
                 </button>
             </div>
-            <form onSubmit={handleSubmit} className="space-y-5 w-lg md:w-xl lg:w-2xl bg-white/50 rounded-3xl shadow-[0_0_35px_rgba(97,118,32,0.15)] p-8">
-                <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+            <form onSubmit={handleSubmit} className="space-y-5 w-xs sm:w-sm md:w-md lg:w-lg xl:w-xl bg-white/50 rounded-3xl shadow-[0_0_35px_rgba(97,118,32,0.15)] p-8">
+                <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-gray-800 mb-6 text-center">
                     Book Service
                 </h2>
                 <div>
