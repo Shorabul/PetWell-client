@@ -25,7 +25,7 @@ const MainLayout = () => {
     return (
         <div className='flex flex-col min-h-screen bg-gradient-to-r from-[#617620] to-[#0f181f]'>
             <Navbar></Navbar>
-            <section className="flex-1 py-10">
+            <section className="flex-1 py-10 mt-20">
                 {state === 'loading' ? <Loading></Loading> : <Outlet></Outlet>}
                 {/* <Outlet></Outlet> */}
             </section>

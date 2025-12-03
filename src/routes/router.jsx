@@ -63,7 +63,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/product-details/:id',
-                element: (<PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>),
+                element: <ProductDetails></ProductDetails>,
             },
         ]
     },
@@ -89,9 +89,7 @@ const router = createBrowserRouter([
     {
         path: '/service-details/:id',
         errorElement: <Error></Error>,
-        element: (<PrivateRoute>
-            <ServiceDetails></ServiceDetails>
-        </PrivateRoute>),
+        element: <ServiceDetails></ServiceDetails>,
     },
     {
         path: '/book-service/:id',
