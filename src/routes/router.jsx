@@ -17,6 +17,8 @@ import UpdateName from '../pages/UpdateName';
 import UpdateEmail from '../pages/UpdateEmail';
 import UpdateNumber from '../pages/UpdateNumber';
 import ProductDetails from '../pages/ProductDetails';
+import Wishlist from '../pages/Wishlist';
+import AllProducts from '../pages/AllProducts';
 const router = createBrowserRouter([
     {
         path: '/',
@@ -64,7 +66,13 @@ const router = createBrowserRouter([
             {
                 path: '/product-details/:id',
                 element: <ProductDetails></ProductDetails>,
-            },
+            }, {
+                path: '/wishlist',
+                element: <Wishlist></Wishlist>
+            }, {
+                path: '/products',
+                element: <AllProducts></AllProducts>
+            }
         ]
     },
     {

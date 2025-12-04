@@ -1,16 +1,18 @@
 import React from 'react';
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { Link } from 'react-router';
 
 const Footer = () => {
     return (
         <footer className="bg-gradient-to-r from-[#617620] to-[#0f181f] text-[#fcf9e2] pt-12 pb-6">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 mb-10">
 
                     {/* About WarmPaws */}
                     <div>
+
                         <h2 className="text-lg font-semibold mb-4">About WarmPaws</h2>
                         <ul className="space-y-2 text-sm">
                             <li><a href="#" className="hover:text-green-400 transition">About</a></li>
@@ -68,6 +70,13 @@ const Footer = () => {
 
                 {/* Bottom Section */}
                 <div className="flex flex-col md:flex-row items-center justify-between border-t border-green-600 pt-6">
+                    <Link to='/'>
+                        <img
+                            className="h-10 md:h-12 lg:h-14 rounded mb-4"
+                            src="https://i.ibb.co/vCQ80JMx/Warm-Paws-Logo.jpg"
+                            alt="WarmPaws Logo"
+                        />
+                    </Link>
                     <p className="text-sm mb-4 md:mb-0">&copy; 2025 WarmPaws™. All Rights Reserved.</p>
                     <div className="flex space-x-5 text-xl">
                         <a href="https://www.facebook.com" className="hover:text-green-400 transition"><FaFacebookF /></a>

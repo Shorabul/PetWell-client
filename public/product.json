@@ -2,63 +2,121 @@
     {
         "productId": 101,
         "productName": "Cozy Dog Sweater",
-        "image": "https://i.ibb.co/WpNBTrsq/81-G-k7-Ito2-L-AC-SX679.jpg",
+        "image": [
+            "https://i.ibb.co/q3XXtTNY/Cozy-Dog-Sweater1.jpg",
+            "https://i.ibb.co/LdhHrLqV/Cozy-Dog-Sweater2.jpg",
+            "https://i.ibb.co/tTL4h5s0/Cozy-Dog-Sweater3.jpg",
+            "https://i.ibb.co/60z7dXvX/Cozy-Dog-Sweater4.jpg",
+            "https://i.ibb.co/7Jx4ttXd/Cozy-Dog-Sweater5.jpg"
+        ],
         "category": "Clothing",
         "rating": 4.9,
         "price": 25.99
     },
     {
         "productId": 102,
-        "productName": "Cat Winter Jacket",
-        "image": "https://i.ibb.co/JR6TtCDw/61of-Lyry-GKL-AC-SL1000.jpg",
-        "category": "Clothing",
+        "productName": "Cat and Dog Jacket",
+        "image": [
+            "https://i.ibb.co/dswtyVKz/Ectkue-Jacket1.jpg",
+            "https://i.ibb.co/Q3Z14CQv/Ectkue-Jacket3.jpg",
+            "https://i.ibb.co/vxX4gh5N/Ectkue-Jacket2.jpg",
+            "https://i.ibb.co/ym4zS1cK/Ectkue-Jacket5.jpg",
+            "https://i.ibb.co/PvX6v6fm/Ectkue-Jacket4.jpg"
+        ],
+        "category": "Jacket",
         "rating": 4.8,
         "price": 22.50
     },
     {
         "productId": 103,
         "productName": "Heated Pet Bed",
-        "image": "https://i.ibb.co/TqBkq984/71-Fncn-U-CRL-AC-SL1500.jpg",
-        "category": "Bedding",
+        "image": [
+            "https://i.ibb.co/GQVL1Nzj/Heated-Cat-House1.jpg",
+            "https://i.ibb.co/QWDnv2h/Heated-Cat-House2.jpg",
+            "https://i.ibb.co/QjCMvqzT/Heated-Cat-House3.jpg",
+            "https://i.ibb.co/ymKmHYmV/Heated-Cat-House4.jpg",
+            "https://i.ibb.co/NnSCDSyD/Heated-Cat-House5.jpg"
+        ],
+        "category": "House",
         "rating": 5.0,
         "price": 59.99
     },
     {
         "productId": 104,
+        "productName": "Dreamhigh Heated Water Bowl",
+        "image": [
+            "https://i.ibb.co/SX9SyQkg/Heated-Water-Bowl1.jpg"
+        ],
+        "category": "Bowl",
+        "rating": 4.9,
+        "price": 29.99
+    },
+    {
+        "productId": 105,
+        "productName": "Cat Winter Jacket",
+        "image": [
+            "https://i.ibb.co/JR6TtCDw/61of-Lyry-GKL-AC-SL1000.jpg"
+        ],
+        "category": "Clothing",
+        "rating": 4.8,
+        "price": 22.50
+    },
+    {
+        "productId": 106,
+        "productName": "Heated Pet Bed",
+        "image": [
+            "https://i.ibb.co/TqBkq984/71-Fncn-U-CRL-AC-SL1500.jpg"
+        ],
+        "category": "Bedding",
+        "rating": 5.0,
+        "price": 59.99
+    },
+    {
+        "productId": 107,
         "productName": "Dog Winter Boots",
-        "image": "https://i.ibb.co/VW4L2Ykp/81-Ke-U1-U-o-HL-AC-SL1500.jpg",
+        "image": [
+            "https://i.ibb.co/VW4L2Ykp/81-Ke-U1-U-o-HL-AC-SL1500.jpg"
+        ],
         "category": "Footwear",
         "rating": 4.85,
         "price": 19.99
     },
     {
-        "productId": 105,
+        "productId": 108,
         "productName": "Cat Steam Brush",
-        "image": "https://i.ibb.co/7x6JVVhR/71-Wzyn3-T3-NL-SL1500.jpg",
+        "image": [
+            "https://i.ibb.co/7x6JVVhR/71-Wzyn3-T3-NL-SL1500.jpg"
+        ],
         "category": "Brush",
         "rating": 4.7,
         "price": 12.50
     },
     {
-        "productId": 106,
+        "productId": 109,
         "productName": "Pet Winter Collar",
-        "image": "https://i.ibb.co/gbjk4w5B/81n-OSALv-Xw-L-AC-SL1500.jpg",
+        "image": [
+            "https://i.ibb.co/gbjk4w5B/81n-OSALv-Xw-L-AC-SL1500.jpg"
+        ],
         "category": "Accessories",
         "rating": 4.9,
         "price": 14.99
     },
     {
-        "productId": 107,
+        "productId": 110,
         "productName": "Chicken and Brown Rice - 5lb",
-        "image": "https://i.ibb.co/yFfRGkR0/81zco-GHe6h-L-AC-SX679.jpg",
+        "image": [
+            "https://i.ibb.co/yFfRGkR0/81zco-GHe6h-L-AC-SX679.jpg"
+        ],
         "category": "Food",
         "rating": 5.0,
         "price": 39.99
     },
     {
-        "productId": 108,
+        "productId": 111,
         "productName": "Dog Chew Toy",
-        "image": "https://i.ibb.co/nq72QyVG/61-Ayb-JAp-MS-AC-SL1200.jpg",
+        "image": [
+            "https://i.ibb.co/nq72QyVG/61-Ayb-JAp-MS-AC-SL1200.jpg"
+        ],
         "category": "Toys",
         "rating": 4.8,
         "price": 9.99

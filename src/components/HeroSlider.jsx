@@ -18,7 +18,7 @@ const HeroSlider = () => {
     }, [services]);
 
     return (
-        <div className="w-full max-w-7xl mx-auto rounded-2xl overflow-hidden shadow-lg">
+        <div className="rounded-2xl overflow-hidden shadow-lg">
             <Swiper
                 modules={[Autoplay, Pagination, Navigation]}
                 autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -28,7 +28,7 @@ const HeroSlider = () => {
             >
                 {servicesList.map((service) => (
                     <SwiperSlide key={service.serviceId}>
-                        <div className="relative w-full h-[350px] md:h-[500px]">
+                        <div className="relative w-full h-[350px] md:h-[700px]">
                             <img
                                 src={service.image}
                                 alt={service.serviceName}

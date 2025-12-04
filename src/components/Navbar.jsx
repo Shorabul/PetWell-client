@@ -5,13 +5,14 @@ import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../provider/AuthContext';
 import toast from 'react-hot-toast'
 import { MdMedicalServices, MdContactSupport, MdInfo } from "react-icons/md";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaRegHeart } from "react-icons/fa";
+import { FiBox } from "react-icons/fi";
 
 const Navbar = () => {
 
     const [toggle, setToggle] = useState(false);
     const [profileToggle, setProfileToggle] = useState(false);
-    const { user, logout } = useContext(AuthContext);
+    const { user, logout, wishlist } = useContext(AuthContext);
 
 
     const handleLogout = () => {
@@ -41,8 +42,9 @@ const Navbar = () => {
     const links = <>
         <NavLink to='/' className="flex justify-center items-center gap-1"><HiHome size={20} />Home</NavLink>
         <NavLink to='/services' className="flex justify-center items-center gap-1"><MdMedicalServices size={20} />All Services</NavLink>
-        <NavLink to='/services' className="flex justify-center items-center gap-1"><MdContactSupport size={20} />Contact</NavLink>
-        <NavLink to='/services' className="flex justify-center items-center gap-1"><MdInfo size={20} />About us</NavLink>
+        <NavLink to='/products' className="flex justify-center items-center gap-1"><FiBox size={20} />All Products</NavLink>
+        <a className="flex justify-center items-center gap-1"><MdContactSupport size={20} />Contact</a>
+        <a className="flex justify-center items-center gap-1"><MdInfo size={20} />About us</a>
         {user && <NavLink to='/profile' className="flex justify-center items-center gap-1"><FaUserCircle size={20} />Profile</NavLink>}
     </>
     return (
@@ -66,6 +68,17 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="flex items-center justify-center gap-2">
+                        <div className="relative">
+                            <NavLink to="/wishlist">
+                                <FaRegHeart className="size-8 md:size-10" />
+                            </NavLink>
+
+                            {wishlist.length > 0 && (
+                                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-2">
+                                    {wishlist.length}
+                                </span>
+                            )}
+                        </div>
                         {/* Profile and logout button dropdown */}
                         {user ? <div
                         >
@@ -123,7 +136,7 @@ const Navbar = () => {
                 </div>
                 {/* Dropdown menu */}
                 {toggle && (<div
-                    className={`absolute z-40 right-0 top-14 w-48 h-50 bg-gradient-to-r from-[#0f181f] to-[#617620] rounded-b-md shadow-lg flex flex-col justify-end lg:hidden`}>
+                    className={`absolute z-40 right-0 md:top-16 w-48 h-50 bg-gradient-to-r from-[#0f181f] to-[#617620] rounded-b-md shadow-lg flex flex-col justify-end lg:hidden`}>
                     <div className="flex flex-col justify-start items-start gap-4 p-4 text-sm font-medium text-white">
                         {links}
                     </div>

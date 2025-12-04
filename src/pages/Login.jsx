@@ -3,8 +3,6 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../provider/AuthContext';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-// import { toast } from 'react-toastify';
-import ProfileTost from './profileTost';
 import toast from 'react-hot-toast'
 const Login = () => {
 

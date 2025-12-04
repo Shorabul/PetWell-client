@@ -1,13 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams, Link, useNavigate, } from "react-router";
+import { useParams, Link, useNavigate } from "react-router";
 import { FaStar, FaArrowLeft } from "react-icons/fa6";
 import { AuthContext } from "../provider/AuthContext";
 import toast from 'react-hot-toast';
+import { FaHeart } from "react-icons/fa";
 
 const ProductDetails = () => {
     const { id } = useParams();
-    const { products } = useContext(AuthContext);
-    const [product, setProduct] = useState({});
+    const { products, wishlist, setWishlist } = useContext(AuthContext);
+    const [product, setProduct] = useState(null);
+    const [mainImage, setMainImage] = useState("");
+    const [isLoved, setIsLoved] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -17,37 +20,42 @@ const ProductDetails = () => {
             return;
         }
         const foundProduct = products.find((p) => p.productId === numId);
-        // setProduct(foundProduct);
         if (!foundProduct) {
-            console.log("erro");
             navigate("/error");
         } else {
             setProduct(foundProduct);
+            setMainImage(foundProduct.image[0]);
+            setIsLoved(wishlist?.some(w => w.productId === foundProduct.productId));
         }
-    }, [id, products]);
-    // if (!product) {
-    //     return (
-    //         <div className="min-h-screen flex justify-center items-center bg-[#0f181f] text-white">
-    //             <p>Product not found.</p>
-    //         </div>
-    //     );
-    // }
+    }, [id, products, wishlist, navigate]);
+
+    if (!product) return <p>Loading...</p>;
 
     const notify = () => {
-        toast.success(`${product.productName} added to cart! 🛒`, {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            theme: "dark",
-        });
+        toast.success(`${product.productName} added to cart! 🛒`, { position: "bottom-right" });
+    };
+
+    // const toggleWishlist = () => {
+    //     if (isLoved) {
+    //         setWishlist(prev => prev.filter(w => w.productId !== product.productId));
+    //         toast.success(`${product.productName} removed from wishlist ❤️`);
+    //     } else {
+    //         setWishlist(prev => [...prev, product]);
+    //         toast.success(`${product.productName} added to wishlist ❤️`);
+    //     }
+    //     setIsLoved(!isLoved);
+    // };
+
+    const handleWishlist = (p) => {
+        setIsLoved(!isLoved)
+        setWishlist(p);
     }
 
+
     return (
-        <div className="bg-[#0f181f] text-white/90 flex justify-center items-center p-6">
-            <div className="bg-[#0f181f] border border-[#2c2c2c] rounded-3xl shadow-[0_0_40px_rgba(97,118,32,0.25)] w-full max-w-4xl overflow-hidden">
+        <div className="text-white/90 flex justify-center items-center p-6">
+            <div className="rounded-3xl w-full max-w-4xl overflow-hidden">
+
                 {/* Header */}
                 <div className="p-6 flex items-center justify-between">
                     <Link
@@ -60,13 +68,31 @@ const ProductDetails = () => {
 
                 {/* Content */}
                 <div className="grid md:grid-cols-2 gap-8 px-8 pb-8">
-                    {/* Product Image */}
-                    <div className="flex justify-center items-center">
+
+                    {/* Product Image + Thumbnails */}
+                    <div className='flex flex-col justify-center'>
                         <img
-                            src={product.image}
+                            src={mainImage}
                             alt={product.productName}
-                            className="rounded-2xl w-full max-w-sm object-cover shadow-[0_0_25px_rgba(97,118,32,0.25)]"
+                            className="rounded-2xl w-full max-w-sm object-cover mb-4"
                         />
+
+                        {/* Thumbnail Buttons */}
+                        <div className="flex gap-2 justify-center">
+                            {product.image.map((img, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => setMainImage(img)}
+                                    className={`w-16 h-16 rounded-md overflow-hidden border-2 ${mainImage === img ? "border-yellow-400" : "border-transparent"}`}
+                                >
+                                    <img
+                                        src={img}
+                                        alt={`${product.productName} ${i}`}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </button>
+                            ))}
+                        </div>
                     </div>
 
                     {/* Product Info */}
@@ -81,7 +107,6 @@ const ProductDetails = () => {
                                 <FaStar key={idx} className="text-sm md:text-base" />
                             ))}
                             <span className="ml-2 text-sm text-white/70">
-                                {/* {product.rating.toFixed(1)} / 5 */}
                                 {product?.rating?.toFixed(1) || '0.0'} / 5
                             </span>
                         </div>
@@ -94,16 +119,23 @@ const ProductDetails = () => {
                             {product.description}
                         </p>
 
-                        {/* Add to Cart / Buy Button */}
-                        <div className="pt-4">
-                            <button onClick={notify} className="bg-[#a1c935] hover:bg-[#c1e340] text-black font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-300">
+                        {/* Add to Cart */}
+                        <div className="flex justify-start items-center gap-4">
+
+                            <button
+                                onClick={notify}
+                                className="bg-[#a1c935] hover:bg-[#c1e340] text-black font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-300"
+                            >
                                 Add to Cart
+                            </button>
+                            <button onClick={() => handleWishlist(product)}>
+                                <FaHeart className={isLoved ? "text-red-500" : "text-gray-400"} size={40} />
                             </button>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                </div >
+            </div >
+        </div >
     );
 };
 

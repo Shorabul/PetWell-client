@@ -6,7 +6,7 @@ const Tips = () => {
     const { tips } = useContext(AuthContext);
 
     return (
-        <div className="w-full text-center space-y-5 sm:space-y-7 md:space-y-10 lg:space-y-12 px-4 md:px-8">
+        <div className="w-full text-center space-y-10 sm:space-y-7 md:space-y-10 lg:space-y-12 px-4 md:px-8">
             <h2 className="text-white/90 font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl animate__animated animate__fadeInDown">
                 Winter Care Tips for Pets
             </h2>

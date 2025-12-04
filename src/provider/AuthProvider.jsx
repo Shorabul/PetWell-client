@@ -24,6 +24,17 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
+
+    const [wishlist, setWishlist] = useState([]);
+
+    const addToWishlist = (product) => {
+        setWishlist((prev) => [...prev, product]);
+    };
+
+    const removeFromWishlist = (id) => {
+        setWishlist((prev) => prev.filter((p) => p.productId !== id));
+    };
+
     useEffect(() => {
         fetch('/services.json')
             .then(res => res.json())
@@ -115,6 +126,9 @@ const AuthProvider = ({ children }) => {
         userPasswordResetEmail,
         updateUserEmail,
         products,
+        wishlist,
+        addToWishlist,
+        removeFromWishlist
     }
     return (
         <AuthContext value={authData}>

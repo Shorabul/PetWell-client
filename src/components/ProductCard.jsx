@@ -23,7 +23,7 @@ const ProductCard = ({ product, direction = "right" }) => {
             {/* Product Image */}
             <div className="overflow-hidden">
                 <img
-                    src={image}
+                    src={image[0]}
                     alt={productName}
                     loading="lazy"
                     className="w-full h-[200px] sm:h-[220px] md:h-[250px] object-cover rounded-t-2xl transform transition-transform duration-300 hover:scale-102"
